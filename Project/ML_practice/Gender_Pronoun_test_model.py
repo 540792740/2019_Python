@@ -14,7 +14,6 @@ warnings.filterwarnings('ignore')
 
 test = pd.read_csv('test_stage_1.tsv', delimiter='\t').rename(columns={'A': 'A_Noun', 'B': 'B_Noun'})
 sub = pd.read_csv('sample_submission_stage_1.csv')
-test.shape, sub.shape
 
 # True test here:
 #gh_train = pd.read_csv("https://raw.githubusercontent.com/google-research-datasets/gap-coreference/master/gap-development.tsv", delimiter='\t')
@@ -22,7 +21,12 @@ test.shape, sub.shape
 gh_test = pd.read_csv("https://raw.githubusercontent.com/google-research-datasets/gap-coreference/master/gap-test.tsv", delimiter='\t')
 gh_valid = pd.read_csv("https://raw.githubusercontent.com/google-research-datasets/gap-coreference/master/gap-validation.tsv", delimiter='\t')
 train = pd.concat((gh_test, gh_valid)).rename(columns={'A': 'A_Noun', 'B': 'B_Noun'}).reset_index(drop=True)
-a = train.shape
+train=train.head()
+# print(a)
+# print(test.shape)
+# print(sub.shape)
+# print(gh_test.shape)
+# print(gh_valid)
 
 
 def name_replace(s, r1, r2):
@@ -52,34 +56,38 @@ test = get_features(test)
 
 def get_nlp_features(s, w):
     doc = nlp(str(s))
+    # print(doc)
     tokens = pd.DataFrame([[token.text, token.dep_] for token in doc], columns=['text', 'dep'])
     return len(tokens[((tokens['text']==w) & (tokens['dep']=='poss'))])
-
 train['A-poss'] = train['Text'].map(lambda x: get_nlp_features(x, 'subjectone'))
-train['B-poss'] = train['Text'].map(lambda x: get_nlp_features(x, 'subjecttwo'))
-test['A-poss'] = test['Text'].map(lambda x: get_nlp_features(x, 'subjectone'))
-test['B-poss'] = test['Text'].map(lambda x: get_nlp_features(x, 'subjecttwo'))
+print(train['A-poss'])
+# 2453    2
+# Name: A-poss, Length: 2454, dtype: int64
 
-train = train.rename(columns={'A-coref':'A', 'B-coref':'B'})
-train['A'] = train['A'].astype(int)
-train['B'] = train['B'].astype(int)
-train['NEITHER'] = 1.0 - (train['A'] + train['B'])
-
-col = ['Pronoun-offset', 'A-offset', 'B-offset', 'section_min', 'Pronoun-offset2', 'A-offset2', 'B-offset2', 'section_max', 'A-poss', 'B-poss', 'A-dist', 'B-dist']
-x1, x2, y1, y2 = model_selection.train_test_split(train[col].fillna(-1), train[['A', 'B', 'NEITHER']], test_size=0.2, random_state=1)
-x1.head()
-
-model = multiclass.OneVsRestClassifier(ensemble.RandomForestClassifier(max_depth = 7, n_estimators=1000, random_state=33))
-# model = multiclass.OneVsRestClassifier(ensemble.ExtraTreesClassifier(n_jobs=-1, n_estimators=100, random_state=33))
-
-# param_dist = {'objective': 'binary:logistic', 'max_depth': 1, 'n_estimators':1000, 'num_round':1000, 'eval_metric': 'logloss'}
-# model = multiclass.OneVsRestClassifier(xgb.XGBClassifier(**param_dist))
-
-model.fit(x1, y1)
-print('log_loss', metrics.log_loss(y2, model.predict_proba(x2)))
-model.fit(train[col].fillna(-1), train[['A', 'B', 'NEITHER']])
-results = model.predict_proba(test[col])
-test['A'] = results[:,0]
-test['B'] = results[:,1]
-test['NEITHER'] = results[:,2]
-test[['ID', 'A', 'B', 'NEITHER']].to_csv('submission.csv', index=False)
+# train['B-poss'] = train['Text'].map(lambda x: get_nlp_features(x, 'subjecttwo'))
+# test['A-poss'] = test['Text'].map(lambda x: get_nlp_features(x, 'subjectone'))
+# test['B-poss'] = test['Text'].map(lambda x: get_nlp_features(x, 'subjecttwo'))
+#
+# train = train.rename(columns={'A-coref':'A', 'B-coref':'B'})
+# train['A'] = train['A'].astype(int)
+# train['B'] = train['B'].astype(int)
+# train['NEITHER'] = 1.0 - (train['A'] + train['B'])
+#
+# col = ['Pronoun-offset', 'A-offset', 'B-offset', 'section_min', 'Pronoun-offset2', 'A-offset2', 'B-offset2', 'section_max', 'A-poss', 'B-poss', 'A-dist', 'B-dist']
+# x1, x2, y1, y2 = model_selection.train_test_split(train[col].fillna(-1), train[['A', 'B', 'NEITHER']], test_size=0.2, random_state=1)
+# x1.head()
+#
+# model = multiclass.OneVsRestClassifier(ensemble.RandomForestClassifier(max_depth = 7, n_estimators=1000, random_state=33))
+# # model = multiclass.OneVsRestClassifier(ensemble.ExtraTreesClassifier(n_jobs=-1, n_estimators=100, random_state=33))
+#
+# # param_dist = {'objective': 'binary:logistic', 'max_depth': 1, 'n_estimators':1000, 'num_round':1000, 'eval_metric': 'logloss'}
+# # model = multiclass.OneVsRestClassifier(xgb.XGBClassifier(**param_dist))
+#
+# model.fit(x1, y1)
+# print('log_loss', metrics.log_loss(y2, model.predict_proba(x2)))
+# model.fit(train[col].fillna(-1), train[['A', 'B', 'NEITHER']])
+# results = model.predict_proba(test[col])
+# test['A'] = results[:,0]
+# test['B'] = results[:,1]
+# test['NEITHER'] = results[:,2]
+# test[['ID', 'A', 'B', 'NEITHER']].to_csv('submission.csv', index=False)
