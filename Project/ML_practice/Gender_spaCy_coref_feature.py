@@ -1,8 +1,11 @@
 import numpy as np
 import pandas as pd
-import spacy
-from spacy import displacy
-nlp = spacy.load('en_core_web_sm')
+
+#from spacy import displacy
+import en_coref_md
+from spacy.tokens import Doc
+nlp = en_coref_md.load()
+
 import nltk
 from sklearn import *
 from sklearn.ensemble import RandomForestClassifier
@@ -12,8 +15,9 @@ from xgboost import XGBClassifier
 import warnings
 warnings.filterwarnings('ignore')
 
-test = pd.read_csv('test_stage_1.tsv', delimiter='\t').rename(columns={'A': 'A_Noun', 'B': 'B_Noun'})
-sub = pd.read_csv('sample_submission_stage_1.csv')
+test = pd.read_csv('../input/test_stage_1.tsv', delimiter='\t').rename(columns={'A': 'A_Noun', 'B': 'B_Noun'})
+sub = pd.read_csv('../input/sample_submission_stage_1.csv')
+test.shape, sub.shape
 
 # True test here:
 #gh_train = pd.read_csv("https://raw.githubusercontent.com/google-research-datasets/gap-coreference/master/gap-development.tsv", delimiter='\t')
@@ -21,8 +25,50 @@ sub = pd.read_csv('sample_submission_stage_1.csv')
 gh_test = pd.read_csv("https://raw.githubusercontent.com/google-research-datasets/gap-coreference/master/gap-test.tsv", delimiter='\t')
 gh_valid = pd.read_csv("https://raw.githubusercontent.com/google-research-datasets/gap-coreference/master/gap-validation.tsv", delimiter='\t')
 train = pd.concat((gh_test, gh_valid)).rename(columns={'A': 'A_Noun', 'B': 'B_Noun'}).reset_index(drop=True)
-# train = train.head()
+train.shape
 
+
+def get_coref(row):
+    coref = None
+
+    nlpr = nlp(row['Text'])
+
+    # dunno if more direct way to get token from text offset
+    for tok in nlpr.doc:
+        if tok.idx == row['Pronoun-offset']:
+            # model limitation that sometimes there are no coref clusters for the token?
+            # also, sometimes the coref clusters will just be something like:
+            # He: his, him, his
+            # So there is no proper name to map back to?
+            try:
+                if len(tok._.coref_clusters) > 0:
+                    coref = tok._.coref_clusters[0][0].text
+            except:
+                # for some, get the following exception just checking len(tok._.coref_clusters)
+                # *** TypeError: 'NoneType' object is not iterable
+                pass
+            break
+
+    if coref:
+        coref = coref.lower()
+        # sometimes the coref is I think meant to be the same as A or B, but
+        # it is either a substring or superstring of A or B
+        A_Noun = row['A_Noun'].lower()
+        B_Noun = row['B_Noun'].lower()
+        if coref in A_Noun or A_Noun in coref:
+            coref = A_Noun
+        elif coref in B_Noun or B_Noun in coref:
+            coref = B_Noun
+
+    return coref
+
+def get_coref_features(df):
+    df['Coref'] = df.apply(get_coref, axis=1)
+    df['Spacy-Coref-A'] = df['Coref'] == df['A_Noun'].str.lower()
+    df['Spacy-Coref-B'] = df['Coref'] == df['B_Noun'].str.lower()
+    return df
+train = get_coref_features(train)
+test = get_coref_features(test)
 
 
 def name_replace(s, r1, r2):
@@ -38,6 +84,7 @@ def get_features(df):
     df['A-offset2'] = df['A-offset'] + df['A_Noun'].map(len)
     df['B-offset2'] = df['B-offset'] + df['B_Noun'].map(len)
     df['section_max'] = df[['Pronoun-offset2', 'A-offset2', 'B-offset2']].max(axis=1)
+    # df['Text'] = df.apply(lambda r: r['Text'][: r['Pronoun-offset']] + 'pronountarget' + r['Text'][r['Pronoun-offset'] + len(str(r['Pronoun'])): ], axis=1)
     df['Text'] = df.apply(lambda r: name_replace(r['Text'], r['A_Noun'], 'subjectone'), axis=1)
     df['Text'] = df.apply(lambda r: name_replace(r['Text'], r['B_Noun'], 'subjecttwo'), axis=1)
 
@@ -51,19 +98,10 @@ test = get_features(test)
 
 def get_nlp_features(s, w):
     doc = nlp(str(s))
-    # print(doc)
     tokens = pd.DataFrame([[token.text, token.dep_] for token in doc], columns=['text', 'dep'])
-    # print(tokens)
-    # token.text is the word, token.dep is the characteristic of a word
-    # print("Noun phrases:", [chunk.text for chunk in doc.noun_chunks])
-    # print("Verbs:", [token.lemma_ for token in doc if token.pos_ == "VERB"])
-    # tokens == 'poss' means possessive.
     return len(tokens[((tokens['text']==w) & (tokens['dep']=='poss'))])
-train['A-poss'] = train['Text'].map(lambda x: get_nlp_features(x, 'subjectone'))
-# print(train['A-poss'])
-# 2453    2
-# Name: A-poss, Length: 2454, dtype: int64
 
+train['A-poss'] = train['Text'].map(lambda x: get_nlp_features(x, 'subjectone'))
 train['B-poss'] = train['Text'].map(lambda x: get_nlp_features(x, 'subjecttwo'))
 test['A-poss'] = test['Text'].map(lambda x: get_nlp_features(x, 'subjectone'))
 test['B-poss'] = test['Text'].map(lambda x: get_nlp_features(x, 'subjecttwo'))
@@ -73,9 +111,9 @@ train['A'] = train['A'].astype(int)
 train['B'] = train['B'].astype(int)
 train['NEITHER'] = 1.0 - (train['A'] + train['B'])
 
-col = ['Pronoun-offset', 'A-offset', 'B-offset', 'section_min', 'Pronoun-offset2', 'A-offset2', 'B-offset2', 'section_max', 'A-poss', 'B-poss', 'A-dist', 'B-dist']
+col = ['Pronoun-offset', 'A-offset', 'B-offset', 'section_min', 'Pronoun-offset2', 'A-offset2', 'B-offset2', 'section_max', 'A-poss', 'B-poss', 'A-dist', 'B-dist', 'Spacy-Coref-A', 'Spacy-Coref-B']
 x1, x2, y1, y2 = model_selection.train_test_split(train[col].fillna(-1), train[['A', 'B', 'NEITHER']], test_size=0.2, random_state=1)
-# x1.head()
+x1.head()
 
 model = multiclass.OneVsRestClassifier(ensemble.RandomForestClassifier(max_depth = 7, n_estimators=1000, random_state=33))
 # model = multiclass.OneVsRestClassifier(ensemble.ExtraTreesClassifier(n_jobs=-1, n_estimators=100, random_state=33))
@@ -91,8 +129,3 @@ test['A'] = results[:,0]
 test['B'] = results[:,1]
 test['NEITHER'] = results[:,2]
 test[['ID', 'A', 'B', 'NEITHER']].to_csv('submission.csv', index=False)
-
-# 做可视化.
-# https://www.cnblogs.com/zhizhan/p/5826089.html
-# Grid Search 的过程来确定一组最佳的参数。其实这个过程说白了就是根据给定的参数候选对所有的组合进行暴力搜索。
-# 用 20 个不同的随机种子来生成 Ensemble，最后取 Weighted Average。这个其实算是一种变相的 Bagging。其意义在于按我实现 Stacking 的方式，我在训练 Base Model 时只用了 80% 的训练数据，而训练第二层的 Model 时用了 100% 的数据，这在一定程度上增大了 Overfitting 的风险。而每次更改随机种子可以确保每次用的是不同的 80%，这样在多次训练取平均以后就相当于逼近了使用 100% 数据的效果
