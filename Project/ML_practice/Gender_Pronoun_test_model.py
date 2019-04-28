@@ -1,16 +1,11 @@
-import numpy as np
 import pandas as pd
 import spacy
-from spacy import displacy
 nlp = spacy.load('en_core_web_sm')
-import nltk
 from sklearn import *
-from sklearn.ensemble import RandomForestClassifier
-import xgboost as xgb
-from xgboost import XGBClassifier
-
 import warnings
 warnings.filterwarnings('ignore')
+
+
 
 test = pd.read_csv('test_stage_1.tsv', delimiter='\t').rename(columns={'A': 'A_Noun', 'B': 'B_Noun'})
 sub = pd.read_csv('sample_submission_stage_1.csv')
@@ -21,7 +16,7 @@ sub = pd.read_csv('sample_submission_stage_1.csv')
 gh_test = pd.read_csv("https://raw.githubusercontent.com/google-research-datasets/gap-coreference/master/gap-test.tsv", delimiter='\t')
 gh_valid = pd.read_csv("https://raw.githubusercontent.com/google-research-datasets/gap-coreference/master/gap-validation.tsv", delimiter='\t')
 train = pd.concat((gh_test, gh_valid)).rename(columns={'A': 'A_Noun', 'B': 'B_Noun'}).reset_index(drop=True)
-# train = train.head()
+train = train.head()
 
 
 
@@ -44,7 +39,6 @@ def get_features(df):
     df['A-dist'] = (df['Pronoun-offset'] - df['A-offset']).abs()
     df['B-dist'] = (df['Pronoun-offset'] - df['B-offset']).abs()
     return (df)
-
 
 train = get_features(train)
 test = get_features(test)
@@ -75,15 +69,13 @@ train['NEITHER'] = 1.0 - (train['A'] + train['B'])
 
 col = ['Pronoun-offset', 'A-offset', 'B-offset', 'section_min', 'Pronoun-offset2', 'A-offset2', 'B-offset2', 'section_max', 'A-poss', 'B-poss', 'A-dist', 'B-dist']
 x1, x2, y1, y2 = model_selection.train_test_split(train[col].fillna(-1), train[['A', 'B', 'NEITHER']], test_size=0.2, random_state=1)
-# x1.head()
+print(x1.head())
 
 model = multiclass.OneVsRestClassifier(ensemble.RandomForestClassifier(max_depth = 7, n_estimators=1000, random_state=33))
-# model = multiclass.OneVsRestClassifier(ensemble.ExtraTreesClassifier(n_jobs=-1, n_estimators=100, random_state=33))
 
-# param_dist = {'objective': 'binary:logistic', 'max_depth': 1, 'n_estimators':1000, 'num_round':1000, 'eval_metric': 'logloss'}
-# model = multiclass.OneVsRestClassifier(xgb.XGBClassifier(**param_dist))
 
 model.fit(x1, y1)
+
 print('log_loss', metrics.log_loss(y2, model.predict_proba(x2)))
 model.fit(train[col].fillna(-1), train[['A', 'B', 'NEITHER']])
 results = model.predict_proba(test[col])
@@ -92,7 +84,15 @@ test['B'] = results[:,1]
 test['NEITHER'] = results[:,2]
 test[['ID', 'A', 'B', 'NEITHER']].to_csv('submission.csv', index=False)
 
+
+
+
 # 做可视化.
+# Feature
+# 调参Randomforest建议
+# Xgbootst的参数
 # https://www.cnblogs.com/zhizhan/p/5826089.html
 # Grid Search 的过程来确定一组最佳的参数。其实这个过程说白了就是根据给定的参数候选对所有的组合进行暴力搜索。
-# 用 20 个不同的随机种子来生成 Ensemble，最后取 Weighted Average。这个其实算是一种变相的 Bagging。其意义在于按我实现 Stacking 的方式，我在训练 Base Model 时只用了 80% 的训练数据，而训练第二层的 Model 时用了 100% 的数据，这在一定程度上增大了 Overfitting 的风险。而每次更改随机种子可以确保每次用的是不同的 80%，这样在多次训练取平均以后就相当于逼近了使用 100% 数据的效果
+# 用 20 个不同的随机种子来生成 Ensemble，最后取 Weighted Average。这个其实算是一种变相的 Bagging。
+# 其意义在于按我实现 Stacking 的方式，我在训练 Base Model 时只用了 80% 的训练数据，而训练第二层的 Model 时用了 100% 的数据，
+# 这在一定程度上增大了 Overfitting 的风险。而每次更改随机种子可以确保每次用的是不同的 80%，这样在多次训练取平均以后就相当于逼近了使用 100% 数据的效果
