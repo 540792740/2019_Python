@@ -1,5 +1,7 @@
 import pandas as pd
 import spacy
+from sklearn.model_selection import KFold
+import numpy as np
 nlp = spacy.load('en_core_web_sm')
 from sklearn import *
 import warnings
@@ -7,8 +9,8 @@ warnings.filterwarnings('ignore')
 
 
 
-test = pd.read_csv('test_stage_1.tsv', delimiter='\t').rename(columns={'A': 'A_Noun', 'B': 'B_Noun'})
-sub = pd.read_csv('sample_submission_stage_1.csv')
+test = pd.read_csv('test_stage_2.tsv', delimiter='\t').rename(columns={'A': 'A_Noun', 'B': 'B_Noun'})
+sub = pd.read_csv('sample_submission_stage_2.csv')
 
 # True test here:
 #gh_train = pd.read_csv("https://raw.githubusercontent.com/google-research-datasets/gap-coreference/master/gap-development.tsv", delimiter='\t')
@@ -16,7 +18,6 @@ sub = pd.read_csv('sample_submission_stage_1.csv')
 gh_test = pd.read_csv("https://raw.githubusercontent.com/google-research-datasets/gap-coreference/master/gap-test.tsv", delimiter='\t')
 gh_valid = pd.read_csv("https://raw.githubusercontent.com/google-research-datasets/gap-coreference/master/gap-validation.tsv", delimiter='\t')
 train = pd.concat((gh_test, gh_valid)).rename(columns={'A': 'A_Noun', 'B': 'B_Noun'}).reset_index(drop=True)
-train = train.head()
 
 
 
@@ -73,7 +74,24 @@ print(x1.head())
 
 model = multiclass.OneVsRestClassifier(ensemble.RandomForestClassifier(max_depth = 7, n_estimators=1000, random_state=33))
 
+folds = 6
+kf = KFold(n_splits=folds, shuffle=False, random_state=11)
+trn = train[col].fillna(-1)
+val = train[["A", "B", "NEITHER"]]
+scores = []
+i = 0
 
+for train_index, test_index in kf.split(train):
+    x1, x2 = trn.iloc[train_index], trn.iloc[test_index]
+    y1, y2 = val.iloc[train_index], val.iloc[test_index]
+
+    model.fit(x1, y1)
+    score = metrics.log_loss(y2, model.predict_proba(x2))
+    print(str(i+1), "log-loss:", score)
+    scores.append(score)
+    i += 1
+
+print("CV Score(log-loss):", np.mean(scores))
 model.fit(x1, y1)
 
 print('log_loss', metrics.log_loss(y2, model.predict_proba(x2)))
