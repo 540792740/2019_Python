@@ -5,16 +5,16 @@ class Solution(object):
         :rtype: int
         """
         maxium = 0
-        a = 0
-        b = len(height) - 1
-        while a < b:
-            if height[a] <= height[b]:
-                maxium = max(maxium, (b -a) * height[a])
-                a += 1
+        left = 0
+        right = len(height) - 1
+        while left < right:
+            if height[left] > height[right]:
+                maxium = max(maxium, height[right] * (right - left))
+                right -= 1
             else:
-                maxium = max(maxium, (b - a) * height[b])
-                b -= 1
+                maxium = max(maxium, height[left] * (right - left))
+                left += 1
+        print(maxium)
         return maxium
-
 S = Solution()
 S.maxArea([1,8,6,2,5,4,8,3,7])
