@@ -46,14 +46,13 @@ class Solution(object):
         ls = len(nums)
         n = ls - 1
         # n is index
-        while n > 0 and nums[n - 1] > nums[n]:
+        while n > 0 and nums[n - 1] >= nums[n]:
             n -= 1
         self.reverse(nums, n, ls - 1)
-        print(nums)
         for i in range(n, ls):
             if nums[i] > nums[n - 1]:
                 self.swap(nums, n - 1, i)
-            break
+                break
         print(nums)
     def swap(self, nums, i, j):
         nums[i], nums[j] = nums[j], nums[i]
@@ -67,4 +66,5 @@ if __name__ == '__main__':
     s = Solution()
     # s.nextPermutation([1,5,8,4,7,6,5,3,1])
     # s.nextPermutation([1,2,3])
-    s.nextPermutation([2,3,1])
+    # s.nextPermutation([2,3,1])
+    s.nextPermutation([5,1,1])
