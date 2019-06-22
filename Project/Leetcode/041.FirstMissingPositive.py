@@ -13,6 +13,7 @@ class Solution(object):
                 if i == FirstValue:
                     FirstValue += 1
         return FirstValue
+
 if __name__ == '__main__':
     S = Solution()
     a = S.firstMissingPositive([-5])
