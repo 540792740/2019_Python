@@ -5,11 +5,17 @@ class Solution(object):
         :rtype: None Do not return anything, modify matrix in-place instead.
         """
         ls = len(matrix)
-        dic = matrix.copy()
+        dic = {}
         for i in range(0, ls):
             for j in range(0, ls):
-                dic[j][ls - 1 - i] = matrix[i][j]
-        return dic
+                if (i,j) not in dic:
+                    dic[(j,ls - 1 - i)] = matrix[i][j]
+                    matrix[i][j] = matrix[j][ls - 1 - i]
+                else:
+                    dic[(j, ls - 1 - i)] = matrix[i][j]
+                    matrix[i][j] = dic[(i,j)]
+        print(dic)
+        return matrix
 
 
 
