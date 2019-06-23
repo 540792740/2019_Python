@@ -20,14 +20,10 @@ class Solution(object):
                     res.append((matrix[i].pop(-1)))
                     i += 1
                 i = i - 1
-
-                print(matrix,i)
                 while i >= 0 and matrix[i] != []:
                     res.append(matrix[i].pop(-1))
 
                 ls = len(matrix)
-                # if matrix != []:
-                #     matrix.pop(ls - 1)
                 if matrix == []:
                     return
 
