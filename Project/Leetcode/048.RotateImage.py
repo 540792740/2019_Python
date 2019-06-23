@@ -10,7 +10,7 @@ class Solution(object):
             for j in range(0, ls):
                 if (i,j) not in dic:
                     dic[(j,ls - 1 - i)] = matrix[i][j]
-                    matrix[i][j] = matrix[j][ls - 1 - i]
+                    matrix[i][j] = matrix[ls - 1 - j][i]
                 else:
                     dic[(j, ls - 1 - i)] = matrix[i][j]
                     matrix[i][j] = dic[(i,j)]
