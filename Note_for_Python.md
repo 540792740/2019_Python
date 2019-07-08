@@ -1,3 +1,3 @@
 ## I. Collections
 <br>
-[link](www.google.com)
+[link](http://www.google.com)
