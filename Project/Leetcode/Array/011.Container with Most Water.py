@@ -1,3 +1,7 @@
+'''
+Area = height * length
+max(maxium, Area)
+'''
 class Solution(object):
     def maxArea(self, height):
         """
@@ -14,7 +18,6 @@ class Solution(object):
             else:
                 maxium = max(maxium, height[left] * (right - left))
                 left += 1
-        print(maxium)
         return maxium
 S = Solution()
 S.maxArea([1,8,6,2,5,4,8,3,7])
