@@ -23,19 +23,18 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        nums_index = [(v, index) for index, v in enumerate(nums)]
+        nums_index = [(index, i) for i, index in enumerate(nums)]
         nums_index.sort()
-        begin, end = 0,len(nums) - 1
-        while begin < end:
-            curr = nums_index[begin][0] + nums_index[end][0]
-            if curr == target:
-                return[nums_index[begin][1],nums_index[end][1]]
-            elif curr > target:
-                end -= 1
-            else:
-                begin += 1
         print(nums_index)
-
+        left = 0
+        right = len(nums) - 1
+        while left < right:
+            if nums_index[left][0] + nums_index[right][0] == target:
+                return [nums_index[left][1] ,nums_index[right][1]]
+            elif nums_index[left][0] + nums_index[right][0] > target:
+                right -= 1
+            else:
+                left += 1
 
 if __name__ =='__main__':
     s = Solution()
