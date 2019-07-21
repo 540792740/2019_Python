@@ -3,8 +3,7 @@
 
 <br>List * number： [2] * 2 =  [2,2]<br> 
 
-## 1. Function `'enumerate'`
-
+#### 1. Function `'enumerate'`
 <br> seq = ['one', 'two', 'three']
 for i , element in enumerate(seq):<br>
     print i,element
