@@ -17,3 +17,8 @@ nums = [7,6,5,4,3,2,1]<br><br>
 nums[:k][::-1] : [nums[k], nums[k-1], ... nums[1]]<br><br>
 `nums[k:] = nums[k:][::-1] `<br>
 [5,6,7,1,2,3,4]
+
+#### 3. Set
+`set(nums)`: Set List into set, which will auto delete duplicate element.<br>
+set：{1，2，3}<br>
+s.add(4): add '4' into set 's'
