@@ -9,7 +9,7 @@ class Solution(object):
         nums[:] = nums[::-1]
         nums[:k] = nums[:k][::-1]
         nums[k:] = nums[k:][::-1]
-
+        return nums
 
 if __name__ == '__main__':
     S= Solution()
