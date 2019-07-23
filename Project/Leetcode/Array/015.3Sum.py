@@ -1,3 +1,10 @@
+'''
+i = 0
+j = i + 1
+k = len() -1
+make sure to avoid duplicate result.
+'''
+
 class Solution(object):
     def threeSum(self, nums):
         """
@@ -24,8 +31,6 @@ class Solution(object):
                         k -= 1
                         while (nums[j] == nums[j - 1] and nums[k] == nums[k + 1] and j < k):
                             j += 1
-
-
                     elif sum < 0:
                         j += 1
                         while nums[j] == nums[j - 1] and j < k:
@@ -34,7 +39,6 @@ class Solution(object):
                         k -= 1
                         while nums[k] == nums[k + 1] and j < k:
                             k -= 1
-
         print(list)
         return list
 
