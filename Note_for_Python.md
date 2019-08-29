@@ -26,5 +26,5 @@ set：{1，2，3}<br>
 `s.clear()` : clear all element in set 's'
 
 #### 4. Reverse in Loop：
-for c in reversed(s):
+for c in reversed(s):   <br>
     print(c)
