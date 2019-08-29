@@ -24,3 +24,7 @@ set：{1，2，3}<br>
 `s.add(4)`: add '4' into set 's'<br>
 `s.remove(3)` : remove 'e' from set 's'<br>
 `s.clear()` : clear all element in set 's'
+
+#### 4. Reverse in Loop：
+for c in reversed(s):
+    print(c)
