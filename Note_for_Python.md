@@ -28,3 +28,8 @@ set：{1，2，3}<br>
 #### 4. Reverse in Loop：
 for c in reversed(s):   <br>
     print(c)
+
+#### 5. Dic：
+parmap = {')':'(', '}':'{',']':'['} <br>
+')' in parmap ----> true
+'(' in parmap ----> False
