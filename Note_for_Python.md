@@ -30,8 +30,8 @@ for c in reversed(s):   <br>
     print(c)
 
 #### 5. Dic：
-parmap = {')':'(', '}':'{',']':'['} <br>
+parmap = {')':'(', '}':'{',']':"["} <br>
 ')' in parmap ----> true    <br>
-'(' in parmap ----> False   <br>]
+'(' in parmap ----> False   ]<br>
 
 
