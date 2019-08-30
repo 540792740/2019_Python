@@ -31,5 +31,7 @@ for c in reversed(s):   <br>
 
 #### 5. Dic：
 parmap = {')':'(', '}':'{',']':'['} <br>
-')' in parmap ----> true
-'(' in parmap ----> False
+')' in parmap ----> true    <br>
+'(' in parmap ----> False   <br]>
+
+
