@@ -27,5 +27,5 @@ class Solution(object):
 
 if __name__ == "__main__":
     S = Solution()
-    a = S.letterCombinations('23')
+    a = S.letterCombinations('234')
     print(a)
