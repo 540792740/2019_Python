@@ -37,4 +37,9 @@ parmap = {')':'(', '}':'{',']':"["} <br>
 ')' in parmap ----> true    <br>
 '(' in parmap ----> False   ]<br>
 
+#### 6.ASCII
+`ord('c')` --> ASCII Number<br>
+Select 0-9 from string<br>
+if a > ord('0') and a < ord('9')<br>
+
 
