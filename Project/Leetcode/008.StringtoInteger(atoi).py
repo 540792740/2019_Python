@@ -24,6 +24,7 @@ class Solution(object):
         elif number < -2147483648:
             number = -2147483648
         return number
+
 if __name__ == '__main__':
     S = Solution()
     a = S.myAtoi("-2147483649 with words")
