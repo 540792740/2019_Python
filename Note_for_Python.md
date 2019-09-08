@@ -42,4 +42,8 @@ parmap = {')':'(', '}':'{',']':"["} <br>
 Select 0-9 from string<br>
 if a > ord('0') and a < ord('9')<br>
 
+#### 7. L istNode
+`head.next` The way to move<br>
+
+
 
