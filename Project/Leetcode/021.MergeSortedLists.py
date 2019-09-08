@@ -11,7 +11,7 @@ class Solution(object):
         :type l2: ListNode
         :rtype: ListNode
         """
-        dummy = cur = ListNode(0)
+        head = cur = ListNode(0)
         while l1 and l2:
             if l1.val < l2.val:
                 cur.next = l1
@@ -20,10 +20,7 @@ class Solution(object):
                 cur.next = l2
                 l2 = l2.next
             cur = cur.next
-        cur.next = l1 or l2
-        return dummy.next
-if __name__ == "__main__":
-    S = Solution()
-    l1 = ListNode([1,2,4])
-    l2 = ListNode([1,3,4])
-    a = S.mergeTwoLists(l1,l2)
+        cur.next =  l1 or l2
+        return head.next
+
+
