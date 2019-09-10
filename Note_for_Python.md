@@ -48,7 +48,7 @@ while l1 and l2: ---when l1 and l2 exist both <br>
 cur.next = l1 or l2 --- when l1 exist or l2 exist, cur.next will be that head<br>
 
 #### 7. //
-Integer Division<>br
-4 / 2 = 2.0<br>
-4 // 2 = 2<br>
+Integer Division<br>
+`4 / 2 = 2.0`<br>
+`4 // 2 = 2`<br>
 
