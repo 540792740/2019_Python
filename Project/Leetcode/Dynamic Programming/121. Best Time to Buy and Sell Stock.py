@@ -1,3 +1,5 @@
+# Trash Code use brust-force, beat 6.7%
+'''
 class Solution(object):
     def maxProfit(self, prices):
         """
@@ -34,12 +36,36 @@ class Solution(object):
             maxlength = r_maxlength
         print(maxlength)
         return maxlength
+'''
+
+# DP
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        length = len(prices)
+        if length == 0:
+            return 0
+        max_profit = [0] * length
+        min_price = [0] * length
+        min_price[0] = prices[0]
+        for i in range(1, length):
+            max_profit[i] = prices[i] - min_price[i - 1]
+            min_price[i] = prices[i]
+            if max_profit[i] < max_profit[i - 1]:
+                max_profit[i] = max_profit[i - 1]
+            if min_price[i] > min_price[i - 1]:
+                min_price[i] = min_price[i - 1]
+        # print(max_profit)
+        return max_profit[length - 1]
 
 
 
 if __name__ == "__main__":
     S = Solution()
-    S.maxProfit([2,1,4])
+    S.maxProfit([2,3,4,1,6])
     # S.maxProfit([1])
     # S.maxProfit([])
     # S.maxProfit([1,2,3])
