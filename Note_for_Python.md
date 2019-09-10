@@ -42,9 +42,13 @@ parmap = {')':'(', '}':'{',']':"["} <br>
 Select 0-9 from string<br>
 if a > ord('0') and a < ord('9')<br>
 
-#### 7. L istNode
+#### 7. ListNode
 `head.next` The way to move<br>
 while l1 and l2: ---when l1 and l2 exist both <br>
 cur.next = l1 or l2 --- when l1 exist or l2 exist, cur.next will be that head<br>
 
+#### 7. //
+Integer Division<>br
+4 / 2 = 2.0<br>
+4 // 2 = 2<br>
 
