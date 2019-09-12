@@ -68,7 +68,7 @@ However, in python3, function map generate iterator, if we want to get value, we
 `list(map(lambda x: x + 1, [1]))` will print [2]
 
 #### 12. extend
-dp = [1, 2]
+dp = [1, 2] <br>
 dp.extend(list(map(lambda x: x + 1, dp)))
 
 
