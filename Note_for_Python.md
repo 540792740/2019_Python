@@ -52,3 +52,12 @@ Integer Division<br>
 `4 / 2 = 2.0`<br>
 `4 // 2 = 2`<br>
 
+#### 9. >> <<
+2 << 2 --> Binary[2] == 01,   left shift 2 bit,  100 --> 4 <br>
+10 >>1 --> Binary[10] ==1010, right shift 1 bit, 101 --> 5 <br>
+
+
+
+
+
+
