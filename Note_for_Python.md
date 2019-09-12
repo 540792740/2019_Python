@@ -56,8 +56,20 @@ Integer Division<br>
 2 << 2 --> Binary[2] == 01,   left shift 2 bit,  100 --> 4 <br>
 10 >>1 --> Binary[10] ==1010, right shift 1 bit, 101 --> 5 <br>
 
+#### 10. lambda
+f = lambda x, y, z : x + y + z + 1<br>
+f(1,2,3) = 1 + 2 + 3 + 1 = 7<br>
 
+#### 11. map
+map(function, iterable)<br>
+`iterable`: list is iterable !!<br>
+However, in python3, function map generate iterator, if we want to get value, we need to add `list(map())`<br>
+`map(lambda x: x + 1, [1])` will print <map object at 0x000001D8816D3DD8> <br>
+`list(map(lambda x: x + 1, [1]))` will print [2]
 
+#### 12. extend
+dp = [1, 2]
+dp.extend(list(map(lambda x: x + 1, dp)))
 
 
 
