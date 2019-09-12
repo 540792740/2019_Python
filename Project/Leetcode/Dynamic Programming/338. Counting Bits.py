@@ -19,9 +19,19 @@ class Solution(object):
                     return dp
             i += 1
         return dp
+    def countBits1(self, num):
+        """
+        :type num: int
+        :rtype: List[int]
+        """
+        dp = [0, 1]
+        while len(dp) <= num:
+            dp.extend(list(map(lambda x : x + 1, dp)))
+        return dp[:num + 1]
 
 
 if __name__ =='__main__':
     S = Solution()
     a = S.countBits(5)
+    a = S.countBits1(5)
     print(a)
