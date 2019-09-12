@@ -36,8 +36,6 @@ class Solution(object):
                 max_length = j - i + 2 * k
                 res = s[i - k : j + k]
                 # print(max_length,res)
-            if j + k == length - 1:
-                break
             i = j
         return res
 
