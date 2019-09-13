@@ -71,5 +71,6 @@ However, in python3, function map generate iterator, if we want to get value, we
 dp = [1, 2] <br>
 dp.extend(list(map(lambda x: x + 1, dp)))
 
-
+#### 13. 2 D Array
+dp = [[1] * m for i in range(n)]
 
