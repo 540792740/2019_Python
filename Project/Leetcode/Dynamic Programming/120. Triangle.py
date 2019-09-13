@@ -14,5 +14,4 @@ class Solution(object):
 if __name__ == '__main__':
     S = Solution()
     a = S.minimumTotal([[2],[3,4],[6,5,7],[4,1,8,3]])
-    a = S.minimumTotal()
     print(a)
