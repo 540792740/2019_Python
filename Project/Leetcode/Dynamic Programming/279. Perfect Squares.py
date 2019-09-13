@@ -40,6 +40,7 @@ class Solution(object):
             i += 1
         return 3
 
+    
 if __name__ == '__main__':
     S = Solution()
     a = S.numSquares1(13)
