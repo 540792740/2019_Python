@@ -1,3 +1,5 @@
+# not good question
+
 class Solution(object):
     def maxProfit(self, prices):
         """
