@@ -1,0 +1,3 @@
+`\l` means show dir <br><br>
+`\c database_name` can connect to database <br><br>
+`\dt` find relations
