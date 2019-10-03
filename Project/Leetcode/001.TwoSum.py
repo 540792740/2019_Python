@@ -13,7 +13,7 @@ class Solution(object):
             for j in range(i + 1, ls):
                 if nums[i] + nums[j] ==target:
                     return [i,j]
-
+test
 '''
 # 指针：
 class Solution(object):
