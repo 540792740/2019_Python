@@ -1,3 +1,13 @@
+'''
+1.  write a loop of whole array with variable i,
+    write another loop with variable j, from i + 1 to end.
+    what i do to make same character together.
+2.  find longest substring, shift left value and right value,
+    if the value is equal, substring can be longer.
+    record the length of substring.
+3.  Find the longest substring and return it
+'''
+
 class Solution(object):
     def longestPalindrome(self, s):
         """
@@ -16,7 +26,7 @@ class Solution(object):
         i = 0
         while i < length:
             j = i + 1
-            '''make same charactor aabbbbaa, bbbb together'''
+            '''make same character aabbbbaa, bbbb together'''
             while j < length:
                 if s[i] == s[j]:
                     j += 1
