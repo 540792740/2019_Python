@@ -1,11 +1,14 @@
 '''
+0.  Make sure return when length is 0 and 1.
 1.  write a loop of whole array with variable i,
     write another loop with variable j, from i + 1 to end.
     what i do to make same character together.
 2.  find longest substring, shift left value and right value,
     if the value is equal, substring can be longer.
     record the length of substring.
-3.  Find the longest substring and return it
+3.  Find the longest substring and return it.
+4.  Test function: length = 0, 1. try some unique array [abababbb], [abafxabba]
+
 '''
 
 class Solution(object):
