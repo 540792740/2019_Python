@@ -12,3 +12,15 @@ class Solution(object):
         :type q: TreeNode
         :rtype: bool
         """
+        def dfs(p,q):
+            if p == None and  q != None:
+                return False
+            if p != None and q == None:
+                return False
+            if p == None and q == None:
+                return True
+            if p.val == q.val:
+                return dfs(p.left, q.left) and dfs(p.right, q.right)
+            else:
+                return False
+        return dfs(p,q)
