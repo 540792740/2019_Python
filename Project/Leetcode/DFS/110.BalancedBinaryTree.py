@@ -1,5 +1,6 @@
 '''
-1.
+0. check when root is None
+1. Deep Search, when abs(left - right) > 1, return false
 
 
 '''
