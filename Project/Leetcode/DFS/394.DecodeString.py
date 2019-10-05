@@ -1,3 +1,11 @@
+'''
+0. Build an array store [alpha, number, FinalString]
+1. when meet alpha, number, save
+2. when meet '[', save [a, n, final]
+3. when meet ']', pop last array, read finalstring and save.
+'''
+
+
 class Solution(object):
     def decodeString(self, s):
         """
@@ -14,10 +22,12 @@ class Solution(object):
                 n += c
             elif c == '[':
                 stack.append([a, int(n), ''])
+                # print(stack)
                 a = n = ''
             else:
                 p, t, b = stack.pop()
                 stack[-1][-1] += p + t * (b + a)
+
                 a = ''
 
         return stack.pop()[-1] + a
@@ -25,6 +35,7 @@ class Solution(object):
 if __name__ == '__main__':
     S = Solution()
     a = S.decodeString("3[a]2[bc]")
-    print(a)
-    b = [['', 1, ''], [a, 1, '']]
-    print(b.pop())
+    # a = S.decodeString("3[a2[c]]")
+    # print(a)
+    b = [['AF', 1, 'WW'], [a, 1, 'DS']]
+    print(b[-1][-1])
