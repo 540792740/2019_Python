@@ -78,3 +78,10 @@ dp = [[1] * m for i in range(n)]
 if `c.isalpha()`: c is alpha, return true <br>
 if `c.isdigit()`: c is digit, return true
 
+#### 15. pop()
+a = [[1,2], [2,3], [3,4]]   <br>
+a.`pop(1)`--->[2,3] will pop out, leave [[1,2],[3,,4]]    <br>
+a.`pop()` --->[3,4] will pop out, leave [[1,2],[2,3]]     <br>
+
+
+
