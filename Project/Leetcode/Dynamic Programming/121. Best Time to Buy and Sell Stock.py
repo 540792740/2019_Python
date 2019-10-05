@@ -39,6 +39,13 @@ class Solution(object):
 '''
 
 # DP
+'''
+0.  Generate two dp arrays of max profit, min price.
+1.  Dynamic process loop from 1 to end, max profit is price - minimum price
+    min_price i min_price.
+2.  In two arrays, compare and get the max profit and min price
+3.  Return profit
+'''
 class Solution(object):
     def maxProfit(self, prices):
         """
@@ -52,20 +59,16 @@ class Solution(object):
         min_price = [0] * length
         min_price[0] = prices[0]
         for i in range(1, length):
-            max_profit[i] = prices[i] - min_price[i - 1]
-            min_price[i] = prices[i]
-            if max_profit[i] < max_profit[i - 1]:
-                max_profit[i] = max_profit[i - 1]
-            if min_price[i] > min_price[i - 1]:
-                min_price[i] = min_price[i - 1]
-        # print(max_profit)
+            max_profit[i] = max(prices[i] - min_price[i - 1], max_profit[i -1])
+            min_price[i] = min(prices[i], min_price[i - 1])
         return max_profit[length - 1]
 
 
 
 if __name__ == "__main__":
     S = Solution()
-    S.maxProfit([2,3,4,1,6])
+    a = S.maxProfit([2,3,4,1,6])
     # S.maxProfit([1])
     # S.maxProfit([])
     # S.maxProfit([1,2,3])
+    print(a)
