@@ -74,3 +74,7 @@ dp.extend(list(map(lambda x: x + 1, dp)))
 #### 13. 2 D Array
 dp = [[1] * m for i in range(n)]
 
+#### 14. isalpha() isdigit()
+if `c.isalpha()`: c is alpha, return true <br>
+if `c.isdigit()`: c is digit, return true
+
