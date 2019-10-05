@@ -35,6 +35,6 @@ class Solution(object):
 
 if __name__ == '__main__':
     S = Solution()
-    a = S.numTrees(5)
-    # a = S.numTrees(3)
+    # a = S.numTrees(5)
+    a = S.numTrees(3)
     print(a)
