@@ -8,16 +8,24 @@ class Solution(object):
         :type height: List[int]
         :rtype: int
         """
-        maxium = 0
+        maxium = area = 0
         left = 0
         right = len(height) - 1
         while left < right:
+            l,r = height[left], height[right]
             if height[left] > height[right]:
-                maxium = max(maxium, height[right] * (right - left))
-                right -= 1
+                area = (right - left) * height[right]
+                while height[right] <= r and right > left:
+                    right -= 1
             else:
-                maxium = max(maxium, height[left] * (right - left))
-                left += 1
+                area = (right - left) * height[left]
+                while height[left] <= l and left < right:
+                    left += 1
+            # maxium = max(maxium, area) this line is slower
+            if area > maxium:
+                maxium = area
         return maxium
+
 S = Solution()
-S.maxArea([1,8,6,2,5,4,8,3,7])
+a = S.maxArea([1,8,6,2,5,4,8,3,7])
+print(a)
