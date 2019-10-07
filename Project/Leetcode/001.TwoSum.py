@@ -1,19 +1,8 @@
 '''
-123
-class Solution(object):
-    def twoSum(self, nums, target):
-        """
-        :type nums: List[int]
-        :type target: int
-        :rtype: List[int]
-        """
-        ls = len(nums)
-        for i in range(0,ls-1):
-            print(i)
-            for j in range(i + 1, ls):
-                if nums[i] + nums[j] ==target:
-                    return [i,j]
-test
+0. New dic
+1. Find wanted num and save in dic
+2. check whether on target
+3. return [tag, tag], careful the return content, not value, the tag
 '''
 # 指针：
 class Solution(object):
@@ -23,18 +12,14 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        nums_index = [(index, i) for i, index in enumerate(nums)]
-        nums_index.sort()
-        print(nums_index)
-        left = 0
-        right = len(nums) - 1
-        while left < right:
-            if nums_index[left][0] + nums_index[right][0] == target:
-                return [nums_index[left][1] ,nums_index[right][1]]
-            elif nums_index[left][0] + nums_index[right][0] > target:
-                right -= 1
+        ls = len(nums)
+        wanted_nums = {}
+        for i in range(ls):
+            if nums[i] not in wanted_nums:
+                wanted_nums[target - nums[i]] = i
             else:
-                left += 1
+                # return 0
+                return [wanted_nums[nums[i]], i]
 
 if __name__ =='__main__':
     s = Solution()
