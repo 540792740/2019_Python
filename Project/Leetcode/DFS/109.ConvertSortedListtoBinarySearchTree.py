@@ -1,3 +1,10 @@
+'''
+0. Save into array
+1. root become the next one, when left, root become left and one by one
+                             when right, same to left, always right
+2. return root
+'''
+
 # Definition for singly-linked list.
 class ListNode(object):
     def __init__(self, x):
