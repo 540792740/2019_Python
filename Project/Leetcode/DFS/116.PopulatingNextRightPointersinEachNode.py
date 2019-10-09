@@ -31,3 +31,4 @@ class Solution(object):
             else:
                 cur = next
                 next = cur.left
+        return root
