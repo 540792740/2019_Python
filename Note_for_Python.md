@@ -87,3 +87,7 @@ a.`pop()` --->[3,4] will pop out, leave [[1,2],[2,3]]     <br>
 _set = set()  
 _set.add() use this function replace list, can improve efficient
 
+#### 17 .find()
+a = "abcabcbb"  <br>
+a.find(c)   <br>
+---> 2
