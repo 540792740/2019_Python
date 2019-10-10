@@ -83,5 +83,7 @@ a = [[1,2], [2,3], [3,4]]   <br>
 a.`pop(1)`--->[2,3] will pop out, leave [[1,2],[3,,4]]    <br>
 a.`pop()` --->[3,4] will pop out, leave [[1,2],[2,3]]     <br>
 
-
+#### 16. set()
+_set = set()  
+_set.add() use this function replace list, can improve efficient
 
