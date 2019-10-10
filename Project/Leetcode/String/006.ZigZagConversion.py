@@ -31,6 +31,7 @@ class Solution(object):
 
         return ''.join(arr)
 
+
 if __name__ == '__main__':
     S = Solution()
     a = S.convert("PAYPALISHIRING", 3)
