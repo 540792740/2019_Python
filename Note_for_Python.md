@@ -96,3 +96,9 @@ a.find(c)   <br>
 carry, rem = `divmod`(curval + carry, 2)    <br>
 equal:      carry = curval + carry `\\` 2     <br>
             rem =   curval + carry `%` 2
+               
+#### 19. dictionary
+w = 'eat'
+key = tuple(sorted(w)) --> ('a','e','t')    <br>
+d = {}      <br>
+d[key] = d.get(key,[]) + [w]    <br>
