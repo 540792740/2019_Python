@@ -1,3 +1,8 @@
+'''
+0. subset + c
+
+'''
+
 class Solution(object):
     def letterCombinations(self, digits):
         """
@@ -27,5 +32,5 @@ class Solution(object):
 
 if __name__ == "__main__":
     S = Solution()
-    a = S.letterCombinations('234')
+    a = S.letterCombinations('23')
     print(a)
