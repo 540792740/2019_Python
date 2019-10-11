@@ -107,3 +107,7 @@ d[key] = d.get(key,[]) + [w]    <br>
 one_dict = {"name": "江辰",  "hobby" : ["running", "singing"]}    <br>
 print(f"姓名：{one_dict['name']},爱好：{one_dict['hobby']}")      <br>
 -->姓名：江辰,爱好：['running', 'singing']
+
+#### 21. [:-1]
+a = '123'   <br>
+a[:-1] --> '12'
