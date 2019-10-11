@@ -91,3 +91,8 @@ _set.add() use this function replace list, can improve efficient
 a = "abcabcbb"  <br>
 a.find(c)   <br>
 ---> 2
+
+#### 18. divmod
+carry, rem = `divmod`(curval + carry, 2)    <br>
+equal:      carry = curval + carry `\\` 2     <br>
+            rem =   curval + carry `%` 2
