@@ -111,3 +111,8 @@ print(f"姓名：{one_dict['name']},爱好：{one_dict['hobby']}")      <br>
 #### 21. [:-1]
 a = '123'   <br>
 a[:-1] --> '12'
+
+#### 22. Replace
+a = '11122234'      <br>
+a = a.`replace('2', '', 1)`   <br>
+---> Means replace 1 '2' into '', Third value means how many neet to be replace<br
