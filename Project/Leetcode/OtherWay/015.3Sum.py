@@ -7,6 +7,15 @@ make sure to avoid duplicate result.
 
 class Solution(object):
     def threeSum(self, nums):
+        ls = len(nums)
+        if ls < 3:
+            return []
+        nums.sort()
+        res = set()
+        # for i, v in enumerate(nums[:-2]):
+
+        return
+    def threeSum1(self, nums):
         """
         :type nums: List[int]
         :rtype: List[List[int]]
