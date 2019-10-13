@@ -1,5 +1,6 @@
 '''
 if not revers, use digits.insert(0,1)
+s
 '''
 class Solution(object):
     def plusOne(self, digits):
