@@ -7,14 +7,30 @@ make sure to avoid duplicate result.
 
 class Solution(object):
     def threeSum(self, nums):
-        ls = len(nums)
-        if ls < 3:
-            return []
+        res = []
         nums.sort()
-        res = set()
-        # for i, v in enumerate(nums[:-2]):
+        ls = len(nums)
+        for i in range(ls - 2):
+            if i > 0 and nums[i] == nums[i - 1]:
+                continue
+            left = i + 1
+            right = ls - 1
+            while left < right:
+                s = nums[i] + nums[left] + nums[right]
+                if s > 0:
+                    right -= 1
+                elif s < 0:
+                    left += 1
+                else:
+                    res.append([nums[i],nums[left],nums[right]])
+                    while left < right and nums[left] == nums[left+1]:
+                        left += 1
+                    while right > left and nums[right] ==nums[right -1]:
+                        right -= 1
+                    left += 1
+                    right -= 1
+        return res
 
-        return
     def threeSum1(self, nums):
         """
         :type nums: List[int]
@@ -53,8 +69,10 @@ class Solution(object):
 
 
 
+if __name__ == '__main__':
+    S = Solution()
+    a = S.threeSum([-1, 0, 1, 2, -1, -4])
+    # S.threeSum([-2,-3,0,0,-2])
+    # S.threeSum([0,0,0])
 
-S = Solution()
-S.threeSum([-1, 0, 1, 2, -1, -4])
-S.threeSum([-2,-3,0,0,-2])
-S.threeSum([0,0,0])
+    print(a)
