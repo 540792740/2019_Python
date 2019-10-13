@@ -4,9 +4,26 @@
 2. when there are more than 1 '0'
 
 '''
-
+#
 class Solution(object):
+
+    # Reverse , O(n)
     def productExceptSelf(self, nums):
+        ls = len(nums)
+        res = []
+        temp = 1
+        for i in range(ls):
+           res.append(temp)
+           temp *= nums[i]
+        temp = 1
+        for i in range(ls - 1, -1, -1):
+            res[i] = res[i] * temp
+            temp *= nums[i]
+        return res
+
+        return
+    # My Way
+    def productExceptSelf1(self, nums):
         """
         :type nums: List[int]
         :rtype: List[int]
@@ -36,5 +53,5 @@ class Solution(object):
 if __name__ == '__main__':
     S = Solution()
     a = S.productExceptSelf([1,2,0])
-    a = S.productExceptSelf([0,2,0])
+    # a = S.productExceptSelf([0,2,0])
     print(a)
