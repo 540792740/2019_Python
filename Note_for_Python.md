@@ -116,3 +116,8 @@ a[:-1] --> '12'
 a = '11122234'      <br>
 a = a.`replace('2', '', 1)`   <br>
 ---> Means replace 1 '2' into '', Third value means how many neet to be replace<br
+
+#### 22. Sorted
+interval = [[2,6],[8,10],[1,3],[15,18]]<br>
+interval =  sorted(interval, key = lambda x: x[0])  <br>
+-->[[1, 3], [2, 6], [8, 10], [15, 18]]
