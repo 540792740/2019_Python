@@ -1,3 +1,20 @@
+'''
+0. matrix[i][j] in dic: dic[(j,ls - 1 - i)] =  matrix[i][j]
+1. if exist: matrix[i][j] = dic[(i,j)]
+2. if not matrix[i][j] = matrix[][]
+[
+  [1,2,3],
+  [4,5,6],
+  [7,8,9]
+],
+[
+  [7,4,1],
+  [8,5,2],
+  [9,6,3]
+]
+
+'''
+
 class Solution(object):
     def rotate(self, matrix):
         """
