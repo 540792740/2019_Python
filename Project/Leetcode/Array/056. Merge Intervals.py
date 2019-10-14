@@ -8,7 +8,17 @@ class Solution(object):
             return []
         intervals = sorted(intervals, key = lambda x: x[0])
         print(intervals)
-
+        l, r = intervals[0]
+        res = []
+        for i in range(1, len(intervals)):
+            cl, cr = intervals[i]
+            if r < cl:
+                res.append([l,r])
+                l, r = cl, cr
+            else:
+                r = max(r, cr)
+        res.append([l,r])
+        return res
 
 if __name__=='__main__':
     S = Solution()
