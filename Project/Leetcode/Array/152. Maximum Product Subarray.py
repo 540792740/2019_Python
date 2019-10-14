@@ -1,8 +1,12 @@
+'''
+dp
+'''
+
 class Solution(object):
     def maxProduct(self, nums):
         ls = len(nums)
         Largest_p = Smallest_p = res = nums[0]
-        for i in range(1, length):
+        for i in range(1, ls):
             pre_largest, pre_Smallest = Largest_p, Smallest_p
             Largest_p =  max(pre_largest * nums[i], nums[i], pre_Smallest * nums[i])
             Smallest_p =  min(pre_largest * nums[i], nums[i], pre_Smallest * nums[i])
