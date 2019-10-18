@@ -125,3 +125,9 @@ interval =  sorted(interval, key = lambda x: x[0])  <br>
 #### 23. Matrix Generate
 matrix = [[0] * n for i in range(n)]    <br>
 --> [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+
+#### 24. Zip
+a = [1, 2, 3] <br>
+b = [4, 5, 6] <br>
+zipped = `zip(a, b)`    --> [(1, 4), (2, 5), (3, 6)]    <br>
+zip(*zipped) --> [(1, 2, 3), (4, 5, 6)]<br>
