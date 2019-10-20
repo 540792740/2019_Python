@@ -135,3 +135,11 @@ zip(*zipped) --> [(1, 2, 3), (4, 5, 6)]<br>
 #### 25. Bit operation
 1 & 2 --> 0 because: 01 & 10 --> 00 <br>
 1 | 2 --> 3 because: 01 | 10 --> 11 <br>
+
+#### 26. List
+s = [1,2,3] <br>
+s[:5] --> [1,2,3] <br>
+To avoid redundant
+
+#### 27, int()
+if s[:i] is None, there is no int(s[:i]), return Error
