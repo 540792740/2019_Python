@@ -1,3 +1,29 @@
+'''
+Since n, there are n! number, we check (n - 1)!
+        if the number of (n - 1)! < k, the value must between
+        (n - 1)! to n!
+e.g: getpermutation(4, 9)
+1.
+start in '1': there are 3!=6
+start in '2': there are also 3! = 6
+so 9 - 6 = 3, current = 1, means first number is 2
+pop(nums[1])
+
+2.
+then [1,3,4]:
+start in '1': there are 2! = 2
+3 - 2 = 1, current = 1, means first number is num[1] = 3
+pop(num[1]) --> 3
+
+3.
+[1,4]:
+start in '1': there are 1!, only left 1
+so pop(0) = 1
+
+---> 231
+
+'''
+
 class Solution(object):
     def getPermutation(self, n, k):
         res = ''
@@ -8,7 +34,9 @@ class Solution(object):
             while k > base:
                 k -= base
                 current += 1
+            print(k)
             res += str(nums[current])
+            # print(current)
             nums.pop(current)
         res += str(nums[0])
         return res
@@ -17,7 +45,7 @@ class Solution(object):
         for i in range(1, n + 1):
             a = a * i
         return a
-    # time Limit Exceeded but Correct
+    # time Limit Exceeded but Correct, Backtracking/ Recursive
     def getPermutation1(self, n, k):
         """
         :type n: int
@@ -47,7 +75,6 @@ class Solution(object):
 if __name__ == '__main__':
     S = Solution()
     # test = S.getPermutation(3,3)
-    # test = S.getPermutation(4,9)
-    test = S.getPermutation(9, 219601)
-    print(test)
-    # print(str(1))
+    test = S.getPermutation(4,24)
+    # test = S.getPermutation(9, 219601)
+    # print(test)
