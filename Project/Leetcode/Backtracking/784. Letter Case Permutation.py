@@ -18,7 +18,34 @@ class Solution(object):
                     Alpha.append(a_digit+ s_digit.upper())
             A = Alpha
         return A
+
+    #80% bymyself
+    def letterCasePermutation1(self, S):
+        """
+        :type S: str
+        :rtype: List[str]
+        """
+        res = []
+        digit = {str(x) for x in range(10)}
+        ls = len(S)
+        def helper(subset, s, index):
+
+            for i in s:
+                if i in digit:
+                    subset += i
+                    index += 1
+                else:
+                    helper(subset + i.lower(), s[index + 1:], 0)
+                    helper(subset + i.upper(), s[index + 1:], 0)
+                    break
+            if len(subset) == ls:
+                res.append(subset)
+                return
+        helper('', S, 0)
+        return res
+
+
 if __name__ == '__main__':
     S = Solution()
-    test = S.letterCasePermutation("a1b2")
+    test = S.letterCasePermutation1("a1b2")
     print(test)
