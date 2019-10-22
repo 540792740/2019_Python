@@ -89,8 +89,9 @@ _set.add() use this function replace list, can improve efficient
 
 #### 17 .find()
 a = "abcabcbb"  <br>
-a.find(c)   <br>
----> 2
+a.find(c)   --> 2  <br>
+a.find('x') --> return `-1`
+a.find('a', 2) --> from index = 2, find 'a'
 
 #### 18. divmod
 carry, rem = `divmod`(curval + carry, 2)    <br>
