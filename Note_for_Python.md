@@ -144,3 +144,8 @@ To avoid redundant
 
 #### 27, int()
 if s[:i] is None, there is no int(s[:i]), return Error
+
+#### 27. Binary Search Tree BST
+1. if root.left, root.val > root.left(all Node left root)   <br>
+2. if root.right, root.cal < root.right(all Node right root)<br>
+3. root.left and root.right are also BST Node               <br>
