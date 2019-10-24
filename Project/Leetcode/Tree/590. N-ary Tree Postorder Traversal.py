@@ -10,7 +10,7 @@ class Solution(boject):
     def dfs(self, root):
         print(root.val)
         if root:
-            for child in children:
+            for child in root.children:
                 self.dfs(child)
                 self.append(child.val)
     # 89%
