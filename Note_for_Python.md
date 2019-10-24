@@ -148,3 +148,11 @@ if s[:i] is None, there is no int(s[:i]), return Error
 1. if root.left, root.val > root.left(all Node left root)   <br>
 2. if root.right, root.cal < root.right(all Node right root)<br>
 3. root.left and root.right are also BST Node               <br>
+
+#### 27. Binary, Ordinary scale
+i = '100'   <br>
+ORD = int(i, 2)  no neet to transfer in to int, just transfer string<br>
+ORD = int(i, 8) if i is octal number
+
+a = '10'    <br>
+print(bin(int(a))) --> 0b1010

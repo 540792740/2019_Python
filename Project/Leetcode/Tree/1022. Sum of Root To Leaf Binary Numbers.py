@@ -31,3 +31,6 @@ class Solution(object):
         for i in self.res:
             summary += int(i, 2)
         return summary
+
+a = '10'
+print(bin(int(a)))
