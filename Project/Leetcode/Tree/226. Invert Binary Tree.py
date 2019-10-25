@@ -27,7 +27,7 @@ class Solution(object):
             self.invertTree(root.right)
         return root
 
-    # BFS, queue
+    # BFS, queue 40%
     def invertTree1(self, root):
         queue = collections.deque([(root)])
         while queue:
@@ -39,14 +39,16 @@ class Solution(object):
             return root
 
         return
-    #DFS Stack
+
+    #DFS Stack 99% beat
     def invertTree2(self, root):
         stack = [root]
         while stack:
+            node = stack.pop()
             if node:
                 node.left, node.right = node.right, node.left
                 stack.extend([node.right, node.left])
-            return root
+        return root
 
 
         return
