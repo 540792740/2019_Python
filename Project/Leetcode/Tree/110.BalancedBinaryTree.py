@@ -13,6 +13,7 @@ class TreeNode(object):
         self.right = None
 
 class Solution(object):
+    # 100%
     def isBalanced(self, root):
         """
         :type root: TreeNode
@@ -23,25 +24,27 @@ class Solution(object):
                 return 0
             left = check(root.left)
             right = check(root.right)
+            print(root.val, left, right)
             if left == -1 or right == -1 or abs(left - right) > 1:
-                print(root.val)
                 return -1
             return 1 + max(left, right)
         return check(root) != -1
 
 root = TreeNode(3)
 left = root.left = TreeNode(9)
-right = root.right = TreeNode(20)
-right = right.left = TreeNode(15)
-right = right.left = TreeNode(7)
+root.right = TreeNode(20)
+right = root.right
+right.left = TreeNode(15)
+right = right.left
+right.left = TreeNode(7)
 '''
-             3
+             3 -- -1
             / \
-           9   20
+       1-- 9   20 -- -1
                /
-              15
+              15 --2
               /
-             8 
+             7 --1
 '''
 
 S = Solution()
