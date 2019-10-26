@@ -117,10 +117,14 @@ a = '11122234'      <br>
 a = a.`replace('2', '', 1)`   <br>
 ---> Means replace 1 '2' into '', Third value means how many neet to be replace<br
 
-#### 22. Sorted
+#### 22. Sorted, sort()
 interval = [[2,6],[8,10],[1,3],[15,18]]<br>
 interval =  sorted(interval, key = lambda x: x[0])  <br>
--->[[1, 3], [2, 6], [8, 10], [15, 18]]
+-->[[1, 3], [2, 6], [8, 10], [15, 18]]  <br>
+b_dict={1:'e',3:'m',9:'a',5:'e'} <br>
+b_dict.sort() --> `Run error` <br>
+sorted(b_dict) --> `{1: 'e', 3: 'm', 5: 'e', 9: 'a'}`
+
 
 #### 23. Matrix Generate
 matrix = [[0] * n for i in range(n)]    <br>
