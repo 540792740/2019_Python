@@ -160,3 +160,8 @@ ORD = int(i, 8) if i is octal number
 
 a = '10'    <br>
 print(bin(int(a))) --> 0b1010
+
+#### 27. Traversal :
+inorder:    `中`序遍歷    左中右，`中在中`        <br>
+preorder:   `先`序遍歷    中左右，`中在先`        <br>
+postorder:  `後`序遍歷    左右中，`中在后`        <br>
