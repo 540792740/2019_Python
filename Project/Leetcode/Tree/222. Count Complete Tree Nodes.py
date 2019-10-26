@@ -6,8 +6,29 @@
 #         self.right = None
 
 class Solution:
-    # 72%
-    def countNodes(self, root: TreeNode) -> int:
+    # 还没来得及看
+    def getHeight(self, root):
+        height = 0
+        while root:
+            height += 1
+            root = root.left
+        return height
+
+    def countNodes(self, root):
+        count = 0
+        while root:
+            l, r = map(self.getHeight, (root.left, root.right))
+            if l == r:
+                count += 2 ** l
+                root = root.right
+            else:
+                count += 2 ** r
+                root = root.left
+        return count
+
+
+    # 72% myself
+    def countNodes1(self, root: TreeNode) -> int:
         if not root: return 0
         if not root.left and not root.right and root:
             return 1
