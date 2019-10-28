@@ -169,3 +169,9 @@ postorder:  `後`序遍歷    左右中，`中在后`        <br>
 #### 27. count()
 array = 'bcddef'     <br>
 array.count('d') --> 2, calculate how many 'd' in array
+
+#### 27. dic.values()
+dic = {'a' : 1,  'b' : 3}   <br>
+dic.values() --> dict_values([3, 3])    <br>
+for i in dic.values():  <br>
+--> i = 1   i = 3 
