@@ -13,6 +13,7 @@ class Solution:
         print(matrix)
         # Set the zeros
         for i in range(1, m):
+            # at this point, should revers to loop to make sure first number can be original value
             for j in range(n - 1, -1, -1):
                 if matrix[i][0] == 0 or matrix[0][j] == 0:
                     matrix[i][j] = 0
