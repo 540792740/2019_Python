@@ -64,7 +64,8 @@ map(function, iterable)<br>
 `iterable`: list is iterable !!<br>
 However, in python3, function map generate iterator, if we want to get value, we need to add `list(map())`<br>
 `map(lambda x: x + 1, [1])` will print <map object at 0x000001D8816D3DD8> <br>
-`list(map(lambda x: x + 1, [1]))` will print [2]
+`list(map(lambda x: x + 1, [1]))` will print [2]    <br>
+`'->'.join(map(str, ['0', '2']))`  : 0->2
 
 #### 12. extend
 dp = [1, 2] <br>
@@ -148,12 +149,12 @@ To avoid redundant
 #### 27, int()
 if s[:i] is None, there is no int(s[:i]), return Error
 
-#### 27. Binary Search Tree BST
+#### 28. Binary Search Tree BST
 1. if root.left, root.val > root.left(all Node left root)   <br>
 2. if root.right, root.cal < root.right(all Node right root)<br>
 3. root.left and root.right are also BST Node               <br>
 
-#### 27. Binary, Ordinary scale
+#### 29. Binary, Ordinary scale
 i = '100'   <br>
 ORD = int(i, 2)  no neet to transfer in to int, just transfer string<br>
 ORD = int(i, 8) if i is octal number
@@ -161,17 +162,23 @@ ORD = int(i, 8) if i is octal number
 a = '10'    <br>
 print(bin(int(a))) --> 0b1010
 
-#### 27. Traversal :
+#### 30. Traversal :
 inorder:    `中`序遍歷    左中右，`中在中`        <br>
 preorder:   `先`序遍歷    中左右，`中在先`        <br>
 postorder:  `後`序遍歷    左右中，`中在后`        <br>
 
-#### 27. count()
+#### 31. count()
 array = 'bcddef'     <br>
 array.count('d') --> 2, calculate how many 'd' in array
 
-#### 27. dic.values()
+#### 32. dic.values()
 dic = {'a' : 1,  'b' : 3}   <br>
 dic.values() --> dict_values([3, 3])    <br>
 for i in dic.values():  <br>
 --> i = 1   i = 3 
+
+**#### 33. dic.get()
+dict.get(key, default=None) <br>
+dict = {'Name': 'Zara', 'Age': 27}  <br>**
+dict.get('Age') --> 27  <br>
+dict.get('Sex', "Never") -->Never   Cuz Never is return when not found <br>
