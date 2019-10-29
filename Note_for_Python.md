@@ -177,8 +177,16 @@ dic.values() --> dict_values([3, 3])    <br>
 for i in dic.values():  <br>
 --> i = 1   i = 3 
 
-**#### 33. dic.get()
+#### 33. dic.get()
 dict.get(key, default=None) <br>
 dict = {'Name': 'Zara', 'Age': 27}  <br>**
 dict.get('Age') --> 27  <br>
 dict.get('Sex', "Never") -->Never   Cuz Never is return when not found <br>
+
+#### 34. all()
+def all(iterable):              <br>
+    for element in iterable:    <br>
+        if not element:         <br>
+            return False        <br>
+    return True                 <br>
+ this function will return True if there is no 0, None, NUll.
