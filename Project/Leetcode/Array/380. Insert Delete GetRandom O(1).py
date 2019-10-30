@@ -1,28 +1,36 @@
 class RandomizedSet:
-
-    # 6% beat myself
+    # 98%
     def __init__(self):
         """
         Initialize your data structure here.
         """
         self.init_list = []
+        self.hashTable = {}
 
     def insert(self, val: int) -> bool:
         """
         Inserts a value to the set. Returns true if the set did not already contain the specified element.
         """
-        if val in self.init_list:
-            return False
-        else:
+        if val not in self.hashTable:
             self.init_list.append(val)
+            self.hashTable[val] = len(self.init_list) - 1
+            print(self.init_list)
             return True
+        else:
+            return False
 
     def remove(self, val: int) -> bool:
         """
         Removes a value from the set. Returns true if the set contained the specified element.
         """
-        if val in self.init_list:
-            self.init_list.remove(val)
+        if val in self.hashTable:
+            Index = self.hashTable[val]
+            ls = len(self.init_list) - 1
+            self.hashTable[self.init_list[-1]] = self.hashTable[val]
+            self.init_list[Index], self.init_list[ls] = self.init_list[ls], self.init_list[Index]
+            self.init_list.pop()
+            self.hashTable.pop(val)
+            print(self.init_list, self.hashTable)
             return True
         else:
             return False
