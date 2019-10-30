@@ -190,3 +190,11 @@ def all(iterable):              <br>
             return False        <br>
     return True                 <br>
  this function will return True if there is no 0, None, NUll.
+ 
+#### 35. list delete
+a = [1, 2, 3, 4]    <br> 
+del a[1] -->  [1,3,4]   <br>
+a.remove(1) --> [2,3,4] 
+
+#### 36 generate a random number in list
+a = random.choice(list)
