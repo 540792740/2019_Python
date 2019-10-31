@@ -198,3 +198,7 @@ a.remove(1) --> [2,3,4]
 
 #### 36 generate a random number in list
 a = random.choice(list)
+
+#### 37 Bit Operation
+if n & 1:  --> only last number is 1, can return true, which means
+                only odd number can return.
