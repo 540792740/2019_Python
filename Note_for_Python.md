@@ -202,3 +202,7 @@ a = random.choice(list)
 #### 37 Bit Operation
 if n & 1:  --> only last number is 1, can return true, which means
                 only odd number can return.
+                
+
+#### 38: while 1
+while 1 is almost equal but it is faster than while True    <br>        
