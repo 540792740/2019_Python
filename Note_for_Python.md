@@ -206,3 +206,13 @@ if n & 1:  --> only last number is 1, can return true, which means
 
 #### 38: while 1
 while 1 is almost equal but it is faster than while True    <br>        
+
+#### 39: Copy Deepcopy
+Shallow Copy: don't creates a copy of nested object, instead it just copies
+the reference of nested objects. <br>
+DeepCopy: copies all the nested objects recursively.
+
+#### 40. min(list)
+list1, list2 = [123, 'xyz', 'zara', 'abc'], [456, 700, 200] <br>
+min(list1) --> 123  <br>
+min(list2) --> 200

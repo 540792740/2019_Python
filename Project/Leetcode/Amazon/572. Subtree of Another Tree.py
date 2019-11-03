@@ -15,6 +15,8 @@ class TreeNode(object):
         self.right = None
 
 class Solution(object):
+    # check t in s: string all val in t, check whether string(t.val) in string(s.val
+
     def isSubtree(self, s: TreeNode, t: TreeNode) -> bool:
         string_s = self.traverse_tree(s)
         string_t = self.traverse_tree(t)
@@ -24,8 +26,12 @@ class Solution(object):
 
     def traverse_tree(self, s):
         if s:
-            print(f"{s.val} {self.traverse_tree(s.left)} {self.traverse_tree(s.right)}")
-            return f"d{s.val} {self.traverse_tree(s.left)} {self.traverse_tree(s.right)}"
+            # kind of expression language
+            print(f" start {s.val} {self.traverse_tree(s.left)} {self.traverse_tree(s.right)}")
+
+            # must add something ahead
+            # else: s = 12 None None,t = 2 None None will return true
+            return f" start{s.val} {self.traverse_tree(s.left)} {self.traverse_tree(s.right)}"
         return None
 
 class Solution1(object):

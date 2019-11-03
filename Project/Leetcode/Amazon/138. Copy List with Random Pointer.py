@@ -7,6 +7,8 @@ class Node(object):
         self.next = next
         self.random = random
 class Solution(object):
+
+    # 99%
     def copyRandomList(self, head):
         if head is None:
             return None
