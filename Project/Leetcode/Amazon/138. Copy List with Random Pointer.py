@@ -34,3 +34,34 @@ class Solution(object):
         """
         return copy.deepcopy(head)
 
+
+    def copyRandomList2(self, head: 'Node') -> 'Node':
+        # when head is None
+        if not head: return None
+
+        mapping = {}
+        cur = head
+
+        # Save all Node into dic-mapping
+        while cur:
+            mapping[cur] = Node(cur.val, None, None)
+            cur = cur.next
+        cur = head
+
+        # Adjest Pointer and Copy
+        while cur:
+
+            # 'next' pointer copy
+            if cur.next:
+                mapping[cur].next = mapping[cur.next]
+
+            # 'random' pointer copy
+            if cur.random:
+                mapping[cur].random = mapping[cur.random]
+
+            # Move to next Node
+            cur = cur.next
+
+        return mapping[head]
+
+
