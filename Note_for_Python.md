@@ -103,6 +103,8 @@ w = 'eat'
 key = tuple(sorted(w)) --> ('a','e','t')    <br>
 d = {}      <br>
 d[key] = d.get(key,[]) + [w]    <br>
+dict = {'Name': 'Zara', 'Age': 27}  <br>
+dict.get('Sex', "Never") --> Never 
 
 #### 20. format: `f'...'`
 one_dict = {"name": "江辰",  "hobby" : ["running", "singing"]}    <br>
