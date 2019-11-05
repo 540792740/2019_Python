@@ -1,5 +1,3 @@
-import collections
-
 class Solution:
     def findFavoriteGenres(self, userSongs, SongGenres):
         res = {}
@@ -11,19 +9,22 @@ class Solution:
                 s_classify[s_index] = s_type
         if not s_classify: return {}
 
-        print(s_classify)
         # get the result of the person one by one
         for person in userSongs:
             temp = {}
+
+            # If he song of the person has type
             for song in userSongs[person]:
-                temp[s_classify[song]] = temp.get(s_classify[song], 0) + 1
-            max_val = max(temp.values())
+                if song in s_classify:
+                    temp[s_classify[song]] = temp.get(s_classify[song], 0) + 1
+
+            # temp is not empty
+            if temp.values():
+                max_val = max(temp.values())
             for key in temp:
                 if temp[key] == max_val:
                     res[person] = res.get(person, []) + [key]
         return res
-
-        return
 
 if __name__ == '__main__':
     S = Solution()
@@ -41,7 +42,8 @@ if __name__ == '__main__':
     print(test)
     test = S.findFavoriteGenres({
    "David": ["song1", "song2"],
-   "Emma":  ["song3", "song4"]
-}, {}
+   "Emma":  ["song3", "song4", "song5"]
+},
+        {"Pop": ["song5", "song6"],}
     )
     print(test)
