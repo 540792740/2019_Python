@@ -4,46 +4,45 @@ import collections
 class Solution(object):
     # Tarjan 89%
     def criticalConnections(self, n, connections):
-        adj = defaultdict(set)
+        g = defaultdict(set)
         for i, j in connections:
-            adj[i].add(j)
-            adj[j].add(i)
-        print(adj)
+            g[i].add(j)
+            g[j].add(i)
 
         # Init Visited, dfn, low
-        visited = [False] * n
-        dfn = [0] * n
-        low = [0] * n
-        self.time = 0
-        parent = [-1] * n
-
         res = []
+        low = [0] * n
+        dfn = [0] * n
+        parent = [-1] * n
+        visited = [False] * n
+        self.times = 0
 
         # Tarjan algorithm find strong connectivity
-        def tarjan(u):
-            visited[u] = True
-            self.time += 1
-            dfn[u] = low[u] = self.time
-            for v in adj[u]:
-                if not visited[v]:
-                    parent[v] = u
-                    tarjan(v)
-                    low[u] = min(low[u], low[v])
+        def tarjan(root):
+            self.times += 1
+            low[root] = dfn[root] = self.times
+            visited[root] = True
 
-                    if low[v] > dfn[u]:
-                        res.append([u,v])
+            for v in g[root]:
+                if not visited[v]:
+                    parent[v] = root
+                    tarjan(v)
+                    low[root] = min(low[root], low[v])
+
+                    if low[v] > dfn[root]:
+                        res.append([v, root])
 
                 # reboot low[u] as the lowest number to u
-                elif v != parent[u]:
-                    low[u] = min(low[u], dfn[v])
-
+                elif v != parent[root]:
+                    low[root] = min(low[v], low[root])
             return
 
+        # Traverse Node
         for root in range(n):
             if not visited[root]:
                 tarjan(root)
-        return res
 
+        return res
 
     # 2 DFS
     def criticalConnections1(self, n, connections):
