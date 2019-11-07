@@ -218,3 +218,13 @@ DeepCopy: copies all the nested objects recursively.
 list1, list2 = [123, 'xyz', 'zara', 'abc'], [456, 700, 200] <br>
 min(list1) --> 123  <br>
 min(list2) --> 200
+
+#### 41. sort dictionary
+my_dic = {‘a’:3 , ‘b’:2 , ‘c’: 1}   <br>
+sort by value <br>
+sorted(my_dic.items(), key =lambda d:d[1], reverse = False) [(‘c’, 1), (‘b’, 2), (‘a’, 3)]  <br>
+sorted(my_dic.items(), key =lambda d:d[1], reverse = True) [(‘a’, 3), (‘b’, 2), (‘c’, 1)]   <br>
+<br>sort by key
+sorted(my_dic.items(), key =lambda d:d[0], reverse = False) <br>
+sorted(my_dic.items(), key =lambda d:d[0], reverse = True)  <br>
+
