@@ -230,5 +230,5 @@ sorted(my_dic.items(), key =lambda d:d[0], reverse = True)  <br>
 
 heapq module: <br>
 heapq.heappop(heap) pop smallest number in heap <br>
-heapq.heappushpop(heap, i) push i and pop smallest number in heap <br> 
+heapq.heappushpop(heap, i) repush i and pop smallest number in heap <br> 
 
