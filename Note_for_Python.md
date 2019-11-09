@@ -232,3 +232,6 @@ heapq module: <br>
 heapq.heappop(heap) pop smallest number in heap <br>
 heapq.heappushpop(heap, i) repush i and pop smallest number in heap <br> 
 
+#### 42. find max value in dic:
+{'a': 1, 'ball': 2, 'far': 1, 'after': 1}   <br>
+max(dic, dic.get) --> 'ball'
