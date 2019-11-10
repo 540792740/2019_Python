@@ -235,3 +235,6 @@ heapq.heappushpop(heap, i) repush i and pop smallest number in heap <br>
 #### 42. find max value in dic:
 {'a': 1, 'ball': 2, 'far': 1, 'after': 1}   <br>
 max(dic, dic.get) --> 'ball'
+
+####43.python2 Divide
+float(2) / 3 --> 0.666667
