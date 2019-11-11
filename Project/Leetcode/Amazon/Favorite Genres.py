@@ -48,38 +48,47 @@ if __name__ == '__main__':
     )
     print(test)
 
-class Solution:
-    def f(self, userSongs, songGeneral):
 
+
+
+class Solution:
+    def f(self, userSongs, songGenres):
+
+        #  Init res
         res = {}
-        # Init dic, used to classify song of each type
+
+        # Classify song into type, save into dic
         dic = {}
-        for i in songGeneral:
-            for j in songGeneral[i]:
-                dic[j] = i
-        # For each person, change song into music_type
+        for i in songGenres:
+            for song in songGenres[i]:
+                dic[song] = i
+
+        # For each person, classify person's song into songs_type
         for person in userSongs:
-            # Init temp to save each person's type
+
+            # Init temp to save how many songs of each type
+            # format: {'rock': 2, 'pop': 3]}
             temp = {}
             for song in userSongs[person]:
                 if song in dic:
                     temp[dic[song]] = temp.get(dic[song], 0) + 1
 
-            # Find max index of each person
+                # Find favorite song of each person
             if temp.values():
                 max_val = max(temp.values())
 
-            # find favorite music of each person
+                # print(temp, max_val)
             for key in temp:
                 if temp[key] == max_val:
                     res[person] = res.get(person, []) + [key]
+        print(res)
         return res
 S = Solution()
 test = S.f({
    "David": ["song1", "song2"],
-   "Emma":  ["song3", "song4", "song5"]
+   "Emma":  ["song3", "song1", "song5"]
 },
-        {"Rock": ["song1", "song3"],
+        {   "Rock": ["song1", "song3"],
             "Dubstep": ["song7"],
             "Techno": ["song2", "song4"],
             "Pop": ["song5", "song6"],
