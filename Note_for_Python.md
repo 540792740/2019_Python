@@ -239,4 +239,12 @@ max(dic, dic.get) --> 'ball'
 ####43.python2 Divide
 float(2) / 3 --> 0.666667
 
-####44. 
+####44. heapq 
+A = [2,6,3,9,9,3,8] <br>
+heapq.heapify(A) --> transfer a list into heap, small value in root
+heapq.pop() --> pop smallest number in A    <br>
+heapq.heappush(element) --> push element into heap  <br>
+
+####45. bisect.insort(seq, item)
+A = [1,5,8] <br>
+bisect.insort(A, 4) --> [1,4,5,8]
