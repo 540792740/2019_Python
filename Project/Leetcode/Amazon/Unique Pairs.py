@@ -23,3 +23,15 @@ if __name__ == '__main__':
     print(test)
     test = S.twoSum([1,1], 2)
     print(test)
+
+
+res = set()
+dict = {}
+nums = [1,1,2,45,46,46]
+target = 47
+for i in nums:
+    if i in dict and (i, dict[i]) not in res:
+        res.add((i, dict[i]))
+    elif i not in dict:
+        dict[target - i] = 1
+print(len(res))
