@@ -248,3 +248,14 @@ heapq.heappush(element) --> push element into heap  <br>
 ####45. bisect.insort(seq, item)
 A = [1,5,8] <br>
 bisect.insort(A, 4) --> [1,4,5,8]
+
+####46. nonlocal key word
+def a():    <br>
+----times = 0   <br>
+----def b():    <br>
+    --------nonlocal times  <br>
+    --------times += 1  <br>
+----b() <br>
+----print(times)    <br>
+----return times    <br>
+a() <br>

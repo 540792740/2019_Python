@@ -25,7 +25,7 @@ class Solution(object):
         return False
 
 
-    # define function to tranverse tree into 'Start' + String
+    # define function to traverse tree into 'Start' + String
     def traverse_tree(self, s):
         if s:
             # kind of expression language
