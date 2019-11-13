@@ -1,49 +1,31 @@
-
 class Solution(object):
+    def minimumCost(self, N, connections):
+        """
+        :type N: int
+        :type connections: List[List[int]]
+        :rtype: int
+        """
+        parents = [x for x in range(N)]
+        ranks = [1] * N
 
-    def minimumCost(self, start, end, N, connections):
-        matrix = [[0 for _ in range(N + 1)] for _ in range(N + 1)]
-        for i, j, cost in connections:
-            matrix[i][j] = cost
-            matrix[j][i] = cost
-        self.min_cost = 2**31 - 1
-        self.res = []
-        def dfs(start, path, cur_cost):
-            # print(path, cur_cost)
-            if cur_cost > self.min_cost:
-                return
-            elif start == end and self.min_cost > cur_cost:
-                self.res = []
-                self.res.append(path)
-                self.min_cost = cur_cost
-            elif start == end and self.min_cost == cur_cost:
-                self.res.append(path)
-            for row in range(1, N + 1):
-                if matrix[start][row] > 0:
-                    if row in path:
-                        continue
-                    dfs(row, path + [row], cur_cost + matrix[start][row])
-        dfs(start, [start], 0)
+        def find(u):
+            while u != parents[u]:
+                parents[u] = parents[parents[u]]
+                u = parents[u]
+            return u
 
-        def find_res(res):
-            point_path = []
-            res_value = []
-            for i in res:
-                for j in range(1, len(i)):
-                    print(i)
-                    point_path.append([i[j], i[j - 1]])
-                    point_path.append([i[j - 1], i[j]])
-            print(point_path)
-            for i, j, cost in connections:
-                print([i, j])
-                if [i, j] in point_path or [j, i] in point_path:
-                    res_value.append('YES')
-                else:
-                    res_value.append('NO')
-            return res_value
-        return find_res(self.res)
+        def union(u, v):
+            root_u, root_v = find(u), find(v)
+            if root_u == root_v: return False
+            if ranks[root_v] > ranks[root_u]:
+                root_u, root_v = root_v, root_u
+            parents[root_v] = root_u
+            ranks[root_u] += ranks[root_v]
+            return True
 
-if __name__ == '__main__':
-    S = Solution()
-    test = S.minimumCost(1, 5, 5, [[1,2,1],[2,3,1],[3,4,1],[4,5,1],[5,1,3],[1,3,2],[5,3,1]])
-    print(test)
+        connections.sort(key=lambda x: x[2])
+        ans = 0
+        for u, v, val in connections:
+            if union(u - 1, v - 1): ans += val
+        groups = len({find(x) for x in parents})
+        return ans if groups == 1 else -1
