@@ -7,24 +7,18 @@ class Solution(object):
         """
         # Using two dicts and two lists:
         # 1. Save first word, dic_first
-        # 2. Save last word,  dic_last
         # 3. Save result index and res as res_index, res
-        dic_first, dic_last, res, res_index = {}, {}, [], []
-
+        dic_first, res, res_index = {}, [], []
         phrases = sorted(phrases)
-        for i in range(len(phrases)):
-            phrases[i] = phrases[i].split()
 
         # Save all first and last words into dict, at the same time find matched sentences
-        for i, sentence in enumerate(phrases):
+        for i in range(len(phrases)):
+            phrases[i] = phrases[i].split()
+            if phrases[i]:
+                dic_first[phrases[i][0]] = dic_first.get(phrases[i][0], []) + [i]
 
-            # Split sentence and save into a list 'sentence'
-            # sentence = sentence.split()
-            if sentence:
-                dic_first[sentence[0]] = dic_first.get(sentence[0], []) + [i]
 
         for i, sentence in enumerate(phrases):
-            # sentence = sentence.split()
             if sentence[-1] in dic_first:
                 res_index.append([i, dic_first[sentence[-1]]])
 
@@ -34,10 +28,12 @@ class Solution(object):
                 for r_index in r[1]:
                     if r_index != r[0]:
                         temp1 = phrases[r[0]][:len(phrases[r[0]]) - 1]
+                        print(temp1, phrases[r[0]][:-1])
                         temp2 = phrases[r_index]
                         temp = ' '.join(temp1 + temp2)
                         if temp not in res:
                             res.append(temp)
+
         generate_res(res_index, res)
         return sorted(res)
 
@@ -58,3 +54,48 @@ if __name__ == '__main__':
 'mission impossible', 
 'mission statement']
 '''
+
+class Solution(object):
+    def beforeAndAfterPuzzles(self, phrases):
+        """
+        :type phrases: List[str]
+        :rtype: List[str]
+        """
+        # Using one dict and two lists:
+        # 1. Save first word into dic_first
+        # 2. Save result's index into res_index
+        # 3. Save restult into res[]
+
+        dic_first, res, res_index = {}, [], []  # Init dic_first, res
+
+        phrases = sorted(phrases)  # Sort phrases
+
+        # Split phrases and Save first word into dic_first
+        for i in range(len(phrases)):
+            phrases[i] = phrases[i].split()  # Split phrases and Save into a list
+
+            # Save all first word into dic, if there is duplicate word, save as a list of each index
+            dic_first[phrases[i][0]] = dic_first.get(phrases[i][0], []) + [i]
+
+        # Find all possible res when last word in dic_first
+        for i, sentence in enumerate(phrases):
+            if sentence[-1] in dic_first:
+                res_index.append([i, dic_first[sentence[-1]]])
+
+        # Init a function to generate result based on the index:
+        def generate_res(res_index, res):
+            for index in res_index:
+                for first_word_index in index[1]:
+                    if index[0] != first_word_index:  # Avoid connect with sentense itself, eg: 'a bb bb a'
+                        temp1 = phrases[index[0]][:-1]
+                        temp2 = phrases[first_word_index]
+                        temp = ' '.join(temp1 + temp2)
+                        if temp not in res: res.append(temp)
+            return
+
+        generate_res(res_index, res)
+        return sorted(res)
+
+
+
+
