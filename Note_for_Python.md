@@ -259,3 +259,8 @@ def a():    <br>
 ----print(times)    <br>
 ----return times    <br>
 a() <br>
+
+####47. defaultdict 
+pre_need = collections.defaultdict(int)
+pre_need[1] += 1    -> defaultdict(<class 'int'>, {1: 1, 0: 1})
+pre_need[0] == 0    -> False
