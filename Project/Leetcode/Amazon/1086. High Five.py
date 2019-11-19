@@ -5,26 +5,14 @@ class Solution(object):
         :type items: List[List[int]]
         :rtype: List[List[int]]
         """
-        items = sorted(items)
-        print(items)
-        ls = len(items) - 1
-        dic = {}
-        count = 0
-        i = ls
-        while i >= 0:
-            if items[i][0] not in dic:
-                dic[items[i][0]] = items[i][1]
-            else:
-                dic[items[i][0]] += items[i][1]
-            count += 1
-            if count == 5:
-                dic[items[i][0]] //= 5
-                count = 0
-                while i > 0 and items[i][0] == items[i - 1][0]:
-                    i -= 1
-
-            i -= 1
-        return [[i, dic[i]] for i in dic]
+        # init a dic to save all students
+        dic = collections.defaultdict(list)
+        res = []
+        for i, j in items:
+            dic[i].append(j)
+        for i in range(1, len(dic) + 1):
+            res.append([i, sum(sorted(dic[i])[-5:]) / 5])
+        return res
 
 if __name__ == '__main__':
     S = Solution()

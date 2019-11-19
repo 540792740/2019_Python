@@ -1,3 +1,4 @@
+import collections
     # Just dic
 
 class LRUCache(object):

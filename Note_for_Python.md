@@ -264,3 +264,12 @@ a() <br>
 pre_need = collections.defaultdict(int)
 pre_need[1] += 1    -> defaultdict(<class 'int'>, {1: 1, 0: 1})
 pre_need[0] == 0    -> False
+
+####48. find max values in dic
+return max(dic, key = dic.get)
+
+####49. collections.Orderdict
+self.d = collections.OrderedDict()  dic with order  <br>
+d = OrderedDict([('a', 1), ('b', 2), ('c', 3)]) <br>
+print(d.popitem(last=False))    <br>
+OrderedDict([('b', 2), ('c', 3)])
