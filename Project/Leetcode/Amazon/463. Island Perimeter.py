@@ -30,9 +30,9 @@ class Solution(object):
             for column in range(len(grid[0])):
                 if grid[row][column]:
                     res += 4
-                    if row and grid[row - 1][column]:
+                    if 0 < row < m and grid[row - 1][column]:
                         res -= 2
-                    if column and grid[row][column - 1]:
+                    if 0 < column < n and grid[row][column - 1]:
                         res -= 2
         return res
 

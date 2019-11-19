@@ -55,6 +55,6 @@ class NestedIterator(object):
                 if x.isInteger():
                     return True
                 s[-1][1] += 1
-                s.append(x.getList(), 0)
+                s.append([x.getList(), 0])
         return False
 

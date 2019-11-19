@@ -29,7 +29,7 @@ def topKFrequent2(words, k):
     # Push all word in dict into heap
     for key in dic:
         heapq.heappush(heap, (-dic[key], key))
-
+    print(heap)
     # Init res
     res = []
     for i in range(k):

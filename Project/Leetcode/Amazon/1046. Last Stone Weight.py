@@ -1,6 +1,6 @@
 import heapq,bisect
 class Solution(object):
-    # Complexity N ^ 2
+    # Complexity N ^ 2, 99%
     def lastStoneWeight(self, A):
         pq = A
         pq = [-x for x in A]
@@ -24,3 +24,6 @@ if __name__ == '__main__':
     test = S.lastStoneWeight([2,6,3,9,9,3,8])
     test = S.lastStoneWeight1([2,6,3,9,9,3,8])
     print(test)
+    a = [1,1,2,2,3,3,3]
+    a.pop()
+    print(a)

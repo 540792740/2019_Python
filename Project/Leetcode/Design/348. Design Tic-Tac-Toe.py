@@ -9,7 +9,7 @@ class TicTacToe(object):
         """
         self.row = [0] * n
         self.col = [0] * n
-        self.diag1 =0
+        self.diag1 = 0
         self.diag2 = 0
         self.n = n
 
