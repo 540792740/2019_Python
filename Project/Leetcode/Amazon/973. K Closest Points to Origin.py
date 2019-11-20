@@ -8,27 +8,27 @@ class Solution(object):
         :type K: int
         :rtype: List[List[int]]
         """
-        dic = {}
-        for x, y in points:
-            dic[(x, y)] = x ** 2 + y ** 2
-
-        dic = sorted(dic.items(), key = lambda d : d[1], reverse = False)
-        # print(dic[0][1])
-        # dic = dic.values.sort()
-        # print(dic.values())
-        return [dic[i][0] for i in range(K)]
+        dic = collections.defaultdict(list)
+        list_res = []
+        res = []
+        for i, j in points:
+            dic[i**2 + j **2].append([i, j])
+            list_res.append(i**2 + j **2)
+        list_res.sort()
+        for i in range(K):
+            if len(res) < K:
+                res.extend(dic[list_res[i]])
+        return res
 
     def kClosest1(self, points, K):
         heap = []
         for x, y in points:
-            dist = -(x * x + y * y)
             if len(heap) == K:
-                heapq.heappushpop(heap, (dist, x, y))
-                print(heap)
+                heapq.heappushpop(heap, (-(x ** 2 + y ** 2), x, y))
             else:
-                heapq.heappush(heap, (dist, x, y))
-                print(heap)
-        return [(x, y) for (dist, x, y) in heap]
+                heapq.heappush(heap, (-(x ** 2 + y ** 2), x, y))
+
+        return [[x, y] for (_, x, y) in heap]
 
 if __name__ == '__main__':
     S = Solution()
