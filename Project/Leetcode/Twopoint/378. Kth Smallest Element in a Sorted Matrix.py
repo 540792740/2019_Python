@@ -1,6 +1,14 @@
 import heapq, bisect
 class Solution(object):
+    # 90%
     def kthSmallest(self, matrix, k):
+        arr = []
+        for i in matrix:
+            arr.extend(i)
+        arr.sort()
+        return arr[k - 1]
+
+    def kthSmallest2(self, matrix, k):
         """
         :type matrix: List[List[int]]
         :type k: int
