@@ -10,13 +10,12 @@ class Solution(object):
         :rtype: int
         """
         if guess(1) == 0: return 1
-        b = [1, n]
-        while 1:
-            mid = (b[0] + b[1]) // 2
-            l = b[0]
-            r = b[1]
-            if guess(i) == guess(m):
-                b = [mid, r]
-            else:
-                b = [l, mid]
-            if guess(r) == 0: return r
+        l, r = 0, n
+        while l <= r:
+            mid = (l + r) // 2
+            if guess(mid) == 0: return mid
+            if guess(l) == guess(mid):
+                l = mid + 1
+            elif guess(r) == guess(mid):
+                r = mid - 1
+
