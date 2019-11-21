@@ -8,26 +8,23 @@ class Solution(object):
         :type s: str
         :rtype: List[str]
         """
-        ls = len(s)
-        if ls < 4 or ls > 12:
-            return None
         res = []
-        self.dfs(res, s, 4, '')
-        return res
-    def dfs(self, res, s, index, subset):
-        if index == 0:
-            if not s:
-                res.append(subset[:-1])
-            return
-        for i in range(1,4):
-            if i <= len(s):
-               if i == 1:
-                    self.dfs(res, s[i:], index - 1, subset +s[:i]+'.')
-               elif i == 2 and s[0] != '0':
-                    self.dfs(res, s[i:], index - 1, subset +s[:i]+'.')
-               elif i == 3 and s[0] != '0' and int(s[:3]) <=255:
-                    self.dfs(res, s[i:], index - 1, subset +s[:i]+'.')
 
+        def dfs(subset, s, index):
+            ls = len(s)
+            if ls > index * 3 or ls < index: return
+            if not s and subset[:-1] not in res:
+                res.append(subset[:-1])
+                return
+
+            for i in range(1, 4):
+                if s[:i]:
+                    if i > 1 and s[0] == '0': return
+                    if int(s[:i]) >= 0 and int(s[:i]) < 256:
+                        dfs(subset + s[:i] + '.', s[i:], index - 1)
+
+        dfs('', s, 4)
+        return res
 if __name__ == '__main__':
     S = Solution()
     a = S.restoreIpAddresses("25525511135")

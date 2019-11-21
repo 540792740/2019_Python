@@ -6,30 +6,25 @@ class Solution(object):
         :rtype: int
         """
         ls = len(nums)
-        def get(start, end):
-            if start > end:
-                return -1
-            mid = int((start + end) / 2)
-            if target == nums[mid]:
-                return mid
-            elif nums[mid] >= nums[start]: #first part is sorted
-                if target < nums[mid] and target >= nums[start]:
-                    if target == nums[start]:
-                        return start
-                    else:
-                        return get(start, mid -1)
-                else:
-                    return get(mid + 1, end)
-            elif nums[mid] <= nums[end]:     #Second part is sorted
-                if target <= nums[end] and target > nums[mid]:
-                    if target == nums[end]:
-                        return end
-                    else:
-                        return get(mid + 1,end)
-                else:
-                    return get(start, mid - 1)
+        l, r = 0, ls - 1
+        while l <= r:
+            mid = (l + r) // 2
+            if nums[mid] == target: return mid
+            if nums[l] == target: return l
+            if nums[r] == target: return r
 
-        return get(0,ls - 1)
+            # Left sorted
+            if nums[mid] > nums[l]:
+                if nums[l] < target < nums[mid]:
+                    r = mid - 1
+                else:
+                    l = mid + 1
+            else:
+                if nums[mid] < target < nums[r]:
+                    l = mid + 1
+                else:
+                    r = mid - 1
+        return -1
 
 if __name__ == '__main__':
     s= Solution()

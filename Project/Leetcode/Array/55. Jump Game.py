@@ -8,21 +8,16 @@ class Solution:
             if m == len(nums): return True
         return True
 
-    # 86% by myself
+    # 89% by myself
     def canJump(self, nums) :
-        ls = len(nums)
-        left = 0
-        jump = 1
-        res_length = ls
-        while left < ls - 1 and jump != 0:
-            jump -= 1
-            res_length -= 1
-            jump = max(nums[left], jump)
-            # print(jump, res_length)
-            if jump >= res_length:
-                return True
-            left += 1
-        if res_length > jump:
-            return False
-        else:
-            return True
+        left_steps = len(nums) - 1
+        could_jump = nums[0]
+        if left_steps == 0: return True
+        if could_jump == 0: return False
+        for i in range(1, len(nums)):
+            if could_jump > left_steps: return True
+            could_jump -= 1
+            could_jump = max(could_jump, nums[i])
+            left_steps -= 1
+            if could_jump == 0 and left_steps > 0: return False
+        return True
