@@ -17,8 +17,7 @@ class Solution:
 
         ranges.append(temp_r)
         print(ranges)
-        print('->'.join(map(str, ['0', '2'])))
-        return ['->'.join(map(str, r)) for r in ranges]
+        return ['->'.join(r) for r in res]
 if __name__ == '__main__':
     S = Solution()
     test = S.summaryRanges([0,1,2,4,5,7])
