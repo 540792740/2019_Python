@@ -118,7 +118,10 @@ zip(*zipped) --> [(1, 2, 3), (4, 5, 6)]<br>
 1 & 2 --> 0 because: 01 & 10 --> 00 <br>
 1 | 2 --> 3 because: 01 | 10 --> 11 <br>
 1 ^ 3 --> 2 because: 01 ^ 11 --> 10 <br>
--3 --> 1011: 1101, navigate and plus 1
+~5 --> -(5 + 1)= -6<br>
+~(-5) --> -4    <br>
+-3 --> 1011: 1101, navigate and plus 1  <br>
+if a^b = c, then a^c = b，且 b^c = a  <br>
 
 #### 27, int()
 if s[:i] is None, there is no int(s[:i]), return Error
