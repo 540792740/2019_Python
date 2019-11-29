@@ -4,6 +4,7 @@ def reverseBits(n):
     for i in range(32):
         res = res << 1
         res |= ((n >> i) & 1)
+    print(res)
     return res
 
 

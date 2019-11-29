@@ -122,6 +122,7 @@ zip(*zipped) --> [(1, 2, 3), (4, 5, 6)]<br>
 ~(-5) --> -4    <br>
 -3 --> 1011: 1101, navigate and plus 1  <br>
 if a^b = c, then a^c = b，且 b^c = a  <br>
+a = a ^ b, a = a ^ b, a will not change
 
 #### 27, int()
 if s[:i] is None, there is no int(s[:i]), return Error
