@@ -1,17 +1,20 @@
-def lengthLongestPath(self, input):
+def lengthLongestPath(input):
     """
     :type input: str
     :rtype: int
     """
-    stack = [(-1, 0)]  # 目录的深度，当前总的字符串长度
+    stack = [(-1, 0)]
     max_len = 0
-    for p in input.split("\n"):
+    for p in input.split('\n'):
         depth = p.count('\t')
         p = p.replace('\t', '')
-        while stack and depth <= stack[-1][0]:  # 一样深，或者当前目录更浅
+        while stack and depth <= stack[-1][0]:
             stack.pop()
-        if '.' not in p:  # 目录
-            stack.append((depth, len(p) + stack[-1][1] + 1))
-        else:  # 文件
+        if '.' not in p:
+            stack.append((depth, len(p) + stack[-1][1] + 1) )
+        else:
             max_len = max(max_len, len(p) + stack[-1][1])
     return max_len
+
+
+lengthLongestPath("dir\n\tsubdir1\n\tsubdir2\n\t\tfile.ext")
