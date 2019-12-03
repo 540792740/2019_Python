@@ -1,4 +1,7 @@
 import collections
+
+# Since i use BFS, the worst case is to traverse all matrix, so the complexity is N times N
+# O(N ^ 2)
 def shortestPathBinaryMatrix(grid):
     n = len(grid)
     if grid[0][0] == 1 or grid[-1][-1] == 1: return -1

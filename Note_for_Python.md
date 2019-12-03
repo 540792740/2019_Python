@@ -244,3 +244,7 @@ self.d = collections.OrderedDict()  dic with order  <br>
 d = OrderedDict([('a', 1), ('b', 2), ('c', 3)]) <br>
 print(d.popitem(last=False))    <br>
 OrderedDict([('b', 2), ('c', 3)])
+
+####50. Read English
+
+2 ^ 16: two to the sixteenth power
