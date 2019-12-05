@@ -211,13 +211,19 @@ max(dic, dic.get) --> 'ball'
 float(2) / 3 --> 0.666667
 
 ####44. heapq 
-A = [2,6,3,9,9,3,8] <br>
-heapq.heapify(A) --> transfer a list into heap, small value in root
-heapq.pop() --> pop smallest number in A    <br>
+nums =                  [2, 3, 5, 1, 54, 23, 132]   <br>
+heapq.heapify(nums) ->  [1, 2, 5, 3, 54, 23, 132]   <br>
+heapq.pop() -->            [2, 3, 5, 132, 54, 23]   <br>
+heapq.pop() -->               [3, 23, 5, 132, 54]   <br>
+heapq.pop() -->                  [5, 23, 54, 132]   <br>
 heapq.heappush(element) --> push element into heap  <br>
+heapq.pop() -> O(1)
+heapq.push() -> O(log(n))
 
 ####45. bisect.insort(seq, item)
-A = [1,5,8] <br>
+二分插入，保持list升序
+Complexity O(log(n)) <br>
+A = [1,5,8]     <br>
 bisect.insort(A, 4) --> [1,4,5,8]
 
 ####46. nonlocal key word

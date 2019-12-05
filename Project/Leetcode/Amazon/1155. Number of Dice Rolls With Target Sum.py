@@ -18,5 +18,4 @@ def numRollsToTarget( d, f, target):
                 print(dp)
     return dp[-1][target] % (10 ** 9 + 7)
 
-
 numRollsToTarget(3, 3, 5)
