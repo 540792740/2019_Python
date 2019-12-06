@@ -1,21 +1,35 @@
-def BinarySearch(seq, v,):
-    left = 0
-    right = len(seq)
-    while left <= right:
-        mid = int((left + right) /2)
-        if seq[mid] == v:
-            print("Contain")
-            break
+class Node:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
-        elif seq[mid] > v:
-            print("1")
-            right = mid -1
+    def findMAx(self, root):
+        if not root: return -inf
+        max_left = self.findMAx(root.left)
+        max_right = self.findMAx(root.right)
+        return max(root.val, max_left, max_right)
 
-        elif seq[mid] < v:
-            print("2")
-            left = mid + 1
+def createBST(nums):
+    root = None
+    for num in nums:
+        root = insert(root, num)
+    return root
 
+def insert(root, val):
+    if not root: return Node(val)
+    if val <= root.val:
+        root.left = insert(root.left, val)
+    else:
+        root.right = insert(root.right, val)
+    return root
 
-    return None
+def inorder(root):
+    if not root: return
+    inorder(root.left)
+    print(root.val)
+    inorder(root.right)
 
-BinarySearch([1,2,3,6,7,8,9], 4)
+if __name__ == "__main__":
+    root =  createBST([1,2,3,6,7,8,9])
+    inorder(root)

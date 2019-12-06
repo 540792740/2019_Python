@@ -9,12 +9,13 @@ class Solution(object):
     # 98%
     def isSymmetric(self, root):
         if not root: return True
-        def isSym(L, R):
-            if not L and not R: return True
-            if L and R and L.val == R.val:
-                return isSym(L.left, R.right) and isSym(L.right, R.left)
-            return False
-        return isSym(root.left, root.right)
+        def check(l, r):
+            if not l and not r: return True
+            if not l or not r: return False
+            if l.val == r.val:
+                return check(l.left, r.right) and check(l.right, r.left)
+        return check(root.left, root.right)
+
 
     def isSymmetric1(self, root):
         """
