@@ -6,25 +6,23 @@
 #         self.right = None
 
 class Solution:
-    # 92% beat
+    # 95% beat, recursion
     def findTarget(self, root, k):
         if not root: return False
-        self.dic = set()
-        self.flag = False
-        def helper(root, target):
-            if self.flag != False: return
-            if not root: return
+        dic = set()
+
+        def find(root):
+            if not root: return False
+            if root.val in dic:
+                return True
             else:
-                if root.val in self.dic:
-                    self.flag = True
-                    return
-                else: self.dic.add(target - root.val)
-                if root.left:
-                    helper(root.left, target)
-                if root.right:
-                    helper(root.right, target)
-        helper(root, k)
-        return self.flag
+                dic.add(k - root.val)
+            left = find(root.left)
+            right = find(root.right)
+            return left or right
+        return find(root)
+
+
     # beat 92%, same
     def findTarget(self, root, k):
         dic = set()

@@ -5,32 +5,35 @@ class Solution(object):
         :type K: int
         :rtype: int
         """
+# Two pointer
+        def quickSort(A, low, high):
+            l = low
+            r = high
+            if low <= high:
+                pivot = A[high]
+                while l < r:
+                    while l < r and A[l] <= pivot:
+                        l += 1
+                    A[r] = A[l]
 
-        def find_max(A, l, r, target):
-            start = l
-            while l <= r:
-                mid = (l + r) // 2
-                if target > A[mid]:
-                    l = mid + 1
-                else:
-                    r = mid - 1
-
-            #high >= start, absolutely to make sure there is a value.
-            print(r)
-            return A[r] #if high >= start else None
-        res = -1
-        A.sort()
-        for i, u in enumerate(A):
-
-            target = K - u
-            val = find_max(A, i + 1, len(A) - 1, target)
-            if val + u == 1796:
-                print((val, u) )
-            if val is not None and res < val + u < K:
-                res = val + u
+                    while l < r and A[r] >= pivot:
+                        r -= 1
+                    A[l] = A[r]
+                A[l] = pivot
+                quickSort(A, low, l - 1)
+                quickSort(A, l + 1, high)
+        res = -2 ^ 31
+        ls = len(A)
+        quickSort(A, 0, ls - 1)
+        l, r = 0, len(A) - 1
+        while l < r:
+            if A[l] + A[r] >= K:
+                r -= 1
+            else:
+                res = max(res, A[l] + A[r])
+                l += 1
+        if res == -2 ^ 31: return -1
         return res
-
-
 if __name__ == '__main__':
     S = Solution()
     # test = S.twoSumLessThanK([34,23,1,24,75,33,54,8], 60)

@@ -1,3 +1,18 @@
+'''
+Question:
+1.  Is the list of nums is sorted?
+2.  return index or the value of element?
+3.  what does input contains? just list and target right?
+
+Solution:
+1.  For this question, I will init a dictionary to solve. I will write a for loop,
+    save target - element value into a dic.
+2.  Then if i could find an element which is in the dic,
+    there is a pair of sum target.
+3.  Save the value into a set, to make sure there is no duplicated pair.
+'''
+
+
 class Solution:
     def twoSum(self, nums, target):
         # Init res and dict
