@@ -1,9 +1,4 @@
-array = [2,4,2,14,77,24,2,14]
-
-def QuickSort(arr):
-    Sort(arr, 0, len(arr) - 1)
-
-def Sort(arr, low, high):
+def quickSort(arr, low, high):
     i = low
     j = high
     if low <= high:
@@ -11,6 +6,7 @@ def Sort(arr, low, high):
         while(i < j):
             while(i < j and arr[j] >= pivot):
                 j -= 1
+            print(arr, pivot)
             arr[i] = arr[j]
 
             while(i < j and arr[i] <= pivot):
@@ -18,8 +14,10 @@ def Sort(arr, low, high):
             arr[j] = arr[i]
 
         arr[i] = pivot
-        Sort(arr, low, i - 1)
-        Sort(arr, i + 1, high)
+        quickSort(arr, low, i - 1)
+        quickSort(arr, i + 1, high)
 
-QuickSort(array)
+
+array = [2,4,2,14,77,24,2,14]
+quickSort(array, 0, len(array) - 1)
 print(array)
