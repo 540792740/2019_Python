@@ -1,3 +1,16 @@
+'''
+Question:
+1.  input list of integer?
+2.  Output element
+3.  How many duplicate? just one or return all
+
+
+Solve:
+1.  Using set to solve
+2.  Write a loop, in dic, return, or add to set
+3.  Complexity should be O(n)
+'''
+
 class Solution:
     def findDuplicate(self, nums):
         class Solution:

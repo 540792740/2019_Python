@@ -1,5 +1,7 @@
 '''
-
+Question:
+1.  What kind of characters in the input, just string of 3 kinds
+    brackets?
 
 '''
 
