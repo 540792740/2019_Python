@@ -1,0 +1,28 @@
+`\l` means show dir <br><br>
+`\c database_name` can connect to database <br><br>
+`\dt` find relations
+
+select version();
+select now(); ->show time
+
+DQL(数据查询语句):
+select
+
+DML(数据操作语言)
+insert, update, delete
+
+DDL(数据定义语言):        <br>
+create, alter, drop      <br>
+create table t_student(id int auto_increment primary key)   <br>
+alter table t_student add sex int(1) not null DEFAULT 0;    <br>
+drop table t_student    <br>
+insert into t_student (id, name) values  (3, 'ZQ'), (4, 'WG');  <br>
+
+DCL(数据控制语言):
+grant, revoke
+
+TCL():
+
+
+help + command <br>
+help create database
