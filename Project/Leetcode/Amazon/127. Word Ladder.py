@@ -24,7 +24,7 @@ class Solution(object):
                     for alpha in 'abcdefghigklmnopqrstuvwxyz':
                         temp.add(word[:index] + alpha + word[index + 1:])
             front_word = temp & wordList
-
+            print(front_word)
             if front_word & end_word:
                 return length
 
@@ -47,3 +47,41 @@ if __name__ == '__main__':
     # a = 'word'
     # b = 'aord'
     # print(a & b)
+
+
+class Solution1(object):
+    def ladderLength1(self, beginWord, endWord, wordList):
+        wordList = set(wordList)
+        if endWord not in wordList: return 0
+        beginWord = set([beginWord])
+        endWord = set([endWord])
+        visited = beginWord
+        ls = 1
+        while not beginWord & endWord:
+            temp_beginWord = set()
+            # Traverse all word in set beginWord
+            for word in beginWord:
+                print(word)
+                for i in range(len(word)):
+                    for j in 'abcdefghijklmnopqrstuvwxyz':
+                        temp = word[:i] + j + word[i + 1:]
+                        if  temp in wordList and temp != word:
+                            temp_beginWord.add(temp)
+            beginWord = temp_beginWord
+            if not beginWord: return 0
+            ls += 1
+            if len(beginWord) > len(endWord):
+                # swap front and back for better performance (fewer choices in generating nextSet)
+                beginWord, endWord = endWord, beginWord
+            wordList -= beginWord
+        return ls
+
+if __name__ == '__main__':
+    S = Solution1()
+    test = S.ladderLength1("hit", "cog", ["hot","dot","dog","lot","log","cog"])
+    test = S.ladderLength1("hot", "dog", ["hot","dog"])
+    print(test)
+    # a = 'word'
+    # b = 'aord'
+    # print(a & b)
+
