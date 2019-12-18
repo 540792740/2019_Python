@@ -15,3 +15,8 @@ if __name__ == '__main__':
     S = Solution()
     a = S.groupAnagrams(["eat","tea","tan","ate","nat","bat"])
     print(a)
+
+
+
+
+

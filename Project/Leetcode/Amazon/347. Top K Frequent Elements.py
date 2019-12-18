@@ -18,7 +18,25 @@ def topKFrequent(nums, k):
             return res
     return res
 
-def topKFrequent1(nums, k):
+    def topKFrequent1(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        #   Init dic, key is element, values is frequent
+        dic = {}
+        for i in nums:
+            dic[i] = dic.get(i, 0) + 1
+
+        #   Sorted based on values
+        max_heap = [(-val, key) for key, val in dic.items()]
+        heapq.heapify(max_heap)
+        #   Return Top K
+        return [heapq.heappop(max_heap)[1] for _ in range(k)]
+
+
+def topKFrequent2(nums, k):
     # print(list(zip(*collections.Counter(nums).most_common(k)))[0])
     return [c[0] for c in Counter(nums).most_common(k)]
 
