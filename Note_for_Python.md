@@ -254,3 +254,4 @@ OrderedDict([('b', 2), ('c', 3)])
 ####50. Read English
 
 2 ^ 16: two to the sixteenth power
+anagram 变形

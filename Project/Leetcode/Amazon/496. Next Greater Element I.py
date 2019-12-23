@@ -22,8 +22,9 @@ def nextGreaterElement(nums1, nums2):
     for element in nums2:
         while stack and element > stack[-1]:
             dic[stack.pop()] = element
-        stack.append(element)
-        print(stack)
+        stacprintk.append(element)
+        (stack)
+
     for element in nums1:
         res.append(dic.get(element, -1))
     return res

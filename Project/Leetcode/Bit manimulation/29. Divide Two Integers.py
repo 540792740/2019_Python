@@ -8,7 +8,7 @@ Solution:
 1.  Bit manipulation is good way to solve.
 2.  Initial return res, use while loop  dividend >= divisor, keep using
     Subtraction to find the result.
-
+3.  Complexity O(log(n)指数增长除数)
 '''
 
 
@@ -36,6 +36,7 @@ class Solution(object):
                     temp <<= 1
                     index <<= 1
             return self.res
+
 
         if (dividend < 0 and divisor < 0) or (dividend > 0 and divisor > 0):
             dividend, divisor = abs(dividend), abs(divisor)
