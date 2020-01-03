@@ -10,6 +10,20 @@ question:
 3.  Test edge: [],1  [2],1  [2],2   [1,2,3], 14
 
 '''
+# DP
+def coinChange(coins, amount):
+    dp = [amount + 1] * (amount + 1)
+    dp[0] = 0
+    for i in range(1, amount + 1):
+        for c in coins:
+            if i >= c:
+                dp[i] = min(dp[i], dp[i - c] + 1)
+    if dp[amount] == amount + 1: return -1
+    else: return dp[amount]
+
+
+
+# DFS
 def coinChange(coins, amount):
     coins.sort(reverse = True)
     ls, res = len(coins), 2 ** 31 - 1
@@ -29,27 +43,3 @@ def coinChange(coins, amount):
 
 
 
-
-# Wrong answer!!!!!!!!!!!!!!!
-def coinChange1(coins, amount):
-    coins.sort()
-    res = 2 ** 31 - 1
-    coin_list = []
-    def dfs(coins, path):
-        if path not in coin_list and path: coin_list.append(path)
-        for i in range(len(coins)):
-            dfs(coins[i + 1:], path + [coins[i]])
-    dfs(coins, [])
-    for coin in coin_list:
-        count = 0
-        temp = amount
-        for i in range(len(coin) - 1, -1, -1):
-            count += temp // coin[i]
-            temp %= coin[i]
-        if temp > 0 or count == 0: count = 2 ** 31 - 1
-        res = min(count, res)
-    if res == 2 ** 31 - 1: return -1
-    return res
-# print(coinChange([1,2,5], 11))
-print(coinChange([186,419,83,408], 6249))
-# print(coinChange([1,2,3,4], 69))

@@ -1,9 +1,9 @@
-def mergesort(lists):
+def mergeSort(lists):
     ls = len(lists)
     if ls <= 1: return lists
     mid = ls // 2
-    left = mergesort(lists[:mid])
-    right = mergesort(lists[mid:])
+    left = mergeSort(lists[:mid])
+    right = mergeSort(lists[mid:])
     return merge(left, right)
 
 def merge(l, r):
@@ -14,4 +14,4 @@ def merge(l, r):
     res += l + r
     return res
 
-print(mergesort([5,3,7,2,9,1,7]))
+print(mergeSort([5,3,7,2,9,1,7]))
