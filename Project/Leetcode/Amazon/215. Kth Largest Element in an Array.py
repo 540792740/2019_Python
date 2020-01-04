@@ -67,3 +67,9 @@ if __name__ == '__main__':
     S = Solution()
     test = S.findKthLargest4([3,2,1,5,6,4],2)
     print(test)
+    x = {'foo': 'bar'}
+    y = {'bar':x}
+    z = y['bar']['foo']
+    print(z)
+
+    print(sum(x * x for x in [1, 2, 3]))
