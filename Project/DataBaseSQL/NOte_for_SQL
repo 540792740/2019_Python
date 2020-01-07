@@ -26,3 +26,15 @@ TCL():
 
 help + command <br>
 help create database
+
+Select:
+select * from emp;
+select empno, job, name from emp;
+select name, sal * 12 as Salary from emp;
+select distinct salary from emp; --> 去掉重复的
+
+select name, salary from emp order by salary desc; --> 降序
+select name, salary from emp order by salary asc; --> 升序
+select name, salary from emp where sal > 1000 and sal < 2000; --> 大于1000
+
+select * from emp limit 0, 5; 从0开始取， 取5行
