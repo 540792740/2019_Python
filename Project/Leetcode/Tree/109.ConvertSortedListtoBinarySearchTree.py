@@ -19,7 +19,31 @@ class TreeNode(object):
         self.right = None
 
 class Solution(object):
+
+    # Fast slow pointer
     def sortedListToBST(self, head):
+        if not head: return
+        if not head.next: return TreeNode(head.val)
+        fast, slow = head.next.next, head
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+        # Root is slow.next
+        tmp = slow.next
+        root = TreeNode(tmp.val)
+
+        # Cut down left part
+        slow.next = None
+
+        root.left = self.sortedListToBST(head)
+        root.right = self.sortedListToBST(tmp.next)
+
+        return root
+
+
+
+
+    def sortedListToBST1(self, head):
         """
         :type head: ListNode
         :rtype: TreeNode
