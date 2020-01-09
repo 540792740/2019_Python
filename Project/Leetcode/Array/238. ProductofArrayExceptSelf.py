@@ -15,10 +15,13 @@ class Solution(object):
         for i in range(ls):
            res.append(temp)
            temp *= nums[i]
+           print(res)
         temp = 1
+
         for i in range(ls - 1, -1, -1):
             res[i] = res[i] * temp
             temp *= nums[i]
+            print(res)
         return res
 
         return
@@ -52,6 +55,6 @@ class Solution(object):
 
 if __name__ == '__main__':
     S = Solution()
-    a = S.productExceptSelf([1,2,0])
+    a = S.productExceptSelf([1,2,3,4])
     # a = S.productExceptSelf([0,2,0])
     print(a)

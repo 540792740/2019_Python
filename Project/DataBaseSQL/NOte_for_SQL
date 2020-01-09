@@ -55,7 +55,7 @@ sum(salary)
 
 去掉首尾空格：trim(str)
     select rtrim(ename) from emp --> 去掉右边的空格
-
+295. Find Median from Data Stream
 数学函数：
     abs(n)
 
