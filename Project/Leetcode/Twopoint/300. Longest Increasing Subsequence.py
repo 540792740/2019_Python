@@ -13,7 +13,6 @@ class Solution:
             dp[i] = temp
         return max(dp)
 
-        return
     # Two pointer Faster
     def lengthOfLIS(self, nums):
         ls = len(nums)
