@@ -16,6 +16,10 @@ class user:
     def get_password(self):
         return self.__password
 
+    # 当删除时自动调用
+    def __del__(self):
+        print('delete')
+
 u1 =  user('1234567')
 
 # This line will wrong cuz __password is private.
@@ -23,3 +27,10 @@ u1 =  user('1234567')
 
 print(u1.get_password())
 print(u1)
+# 必须所有指针全部消失/
+u2 = u1
+
+del u1
+print('u1 delete')
+del u2
+print('u2 delete')
