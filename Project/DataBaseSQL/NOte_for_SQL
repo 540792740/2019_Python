@@ -91,7 +91,7 @@ DCL(数据控制语言):
 
 9. 性质：
     primary key : unique, not null, also can be combined by several characters
-insert into emp
+insert into emps
 
 10. 约束建立表格
     create table t_dept(
